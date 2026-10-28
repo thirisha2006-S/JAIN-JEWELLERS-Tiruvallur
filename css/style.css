@@ -2427,11 +2427,12 @@ button, input, select, textarea {
   position: relative;
 }
 
-.bridal-planner-layout {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 36px;
-  align-items: start;
+.bridal-simple { grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+.bridal-image-wrap { display: flex; justify-content: center; }
+.bridal-hero-img { width: 100%; max-width: 420px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); object-fit: cover; }
+@media (max-width: 768px) {
+  .bridal-simple { grid-template-columns: 1fr; }
+  .bridal-hero-img { max-width: 100%; }
 }
 
 .bridal-items-list {
@@ -2594,6 +2595,12 @@ button, input, select, textarea {
   border-bottom: 1px solid rgba(201, 151, 56, 0.4);
   padding: 70px 0;
   color: #fff;
+}
+.video-shopping-banner p,
+.video-shopping-banner div,
+.video-shopping-banner span,
+.video-shopping-banner label {
+  color: #fff !important;
 }
 
 .video-shopping-grid {
