@@ -2417,17 +2417,274 @@ button, input, select, textarea {
 }
 
 .calc-estimate-result-box .res-line.total {
-  border-bottom: none;
-  padding-top: 12px;
-  font-size: 1.1rem;
+/* ==========================================================================
+   BRIDAL MUHURTHAM JEWELLERY PACKAGE PLANNER
+   ========================================================================== */
+.bridal-planner-section {
+  padding: 85px 0 95px 0;
+  background: #fdf8ee;
+  border-bottom: 1px solid rgba(201, 151, 56, 0.25);
+  position: relative;
+}
+
+.bridal-planner-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.bridal-items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.bridal-item-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1.5px solid #ded5c5;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.bridal-item-card:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.bridal-item-card.selected {
+  border-color: var(--color-gold-bright);
+  background: #fffdf7;
+  box-shadow: 0 4px 16px rgba(201, 151, 56, 0.18);
+}
+
+.bridal-check-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #b8ab98;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  font-size: 0.75rem;
+}
+
+.bridal-item-card.selected .bridal-check-circle {
+  background: var(--color-gold-gradient);
+  border-color: #aa771c;
+  color: #2b0409;
+}
+
+.bridal-item-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ebdcc5;
+  flex-shrink: 0;
+}
+
+.bridal-item-info {
+  flex: 1;
+}
+
+.bridal-role-tag {
+  font-size: 0.7rem;
+  color: var(--color-primary-light);
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bridal-item-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.25;
+  margin: 2px 0;
+}
+
+.bridal-item-metrics {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* Sticky Bridal Muhurtham Box */
+.bridal-summary-sticky-card {
+  position: sticky;
+  top: 100px;
+  background: var(--color-maroon-gradient);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 2px solid var(--color-gold-bright);
+  box-shadow: var(--shadow-lg);
+}
+
+.bridal-summary-sticky-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
   color: var(--color-gold-bright);
+  line-height: 1.2;
+}
+
+.bridal-weight-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(231, 190, 96, 0.3);
+}
+
+.bridal-grams-large {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-gold-bright);
+  line-height: 1;
+}
+
+.bridal-sovereign-text {
+  font-size: 0.95rem;
+  color: #eedcc8;
+}
+
+.bridal-price-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 0.88rem;
+  color: #e5d8ca;
+}
+
+.bridal-price-breakdown .line {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+  padding-bottom: 6px;
+}
+
+.bridal-price-breakdown .line.total {
+  border-bottom: none;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  padding-top: 6px;
+}
+
+/* ==========================================================================
+   VIP LIVE VIDEO SHOPPING SUITE
+   ========================================================================== */
+.video-shopping-banner {
+  background: linear-gradient(135deg, #2b0409 0%, #150104 100%);
+  border-top: 1px solid rgba(201, 151, 56, 0.4);
+  border-bottom: 1px solid rgba(201, 151, 56, 0.4);
+  padding: 70px 0;
+  color: #fff;
+}
+
+.video-shopping-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.time-slot-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+.time-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(201, 151, 56, 0.4);
+  color: #eedcc8;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.time-chip.active,
+.time-chip:hover {
+  background: var(--color-gold-gradient);
+  color: #2b0409;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   HALLMARK & HUID PURITY TRANSPARENCY
+   ========================================================================== */
+.hallmark-guide-banner {
+  background: #fff;
+  border: 1px solid rgba(201, 151, 56, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-top: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.hallmark-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.hallmark-step-card {
+  background: var(--color-cream);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2d7c5;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hallmark-step-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--color-maroon-gradient);
+  color: var(--color-gold-bright);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
+  .bridal-planner-layout {
+    grid-template-columns: 1fr;
+  }
+  .video-shopping-grid {
+    grid-template-columns: 1fr;
+  }
+  .hallmark-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .bullion-cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2452,6 +2709,9 @@ button, input, select, textarea {
 }
 
 @media (max-width: 768px) {
+  .hallmark-steps-grid {
+    grid-template-columns: 1fr;
+  }
   .bullion-cards-grid {
     grid-template-columns: 1fr;
   }

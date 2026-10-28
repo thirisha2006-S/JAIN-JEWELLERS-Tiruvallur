@@ -623,9 +623,141 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (schemeSlider) {
-    schemeSlider.addEventListener('input', updateSchemeCalculation);
-    updateSchemeCalculation();
+  // 5B. BRIDAL MUHURTHAM PACKAGE PLANNER
+  let bridalStateItems = window.JainData.DEFAULT_BRIDAL_ITEMS ? JSON.parse(JSON.stringify(window.JainData.DEFAULT_BRIDAL_ITEMS)) : [];
+
+  function renderBridalPlanner() {
+    const listContainer = document.getElementById('bridalItemsList');
+    if (!listContainer) return;
+
+    listContainer.innerHTML = bridalStateItems.map(item => `
+      <div class="bridal-item-card ${item.selected ? 'selected' : ''}" onclick="window.toggleBridalItem('${item.id}')">
+        <div class="bridal-check-circle">
+          ${item.selected ? '✓' : ''}
+        </div>
+        <img src="${item.image}" alt="${item.name}" class="bridal-item-thumb">
+        <div class="bridal-item-info">
+          <span class="bridal-role-tag">${item.role}</span>
+          <div class="bridal-item-name">${item.name}</div>
+          <div class="bridal-item-metrics">
+            <strong>${item.weight} g</strong> (${item.purity}) • Making: ${item.makingPercent}% V.A.
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    updateBridalTotals();
+  }
+
+  window.toggleBridalItem = (id) => {
+    const item = bridalStateItems.find(i => i.id === id);
+    if (item) {
+      item.selected = !item.selected;
+      renderBridalPlanner();
+    }
+  };
+
+  function updateBridalTotals() {
+    const countDisplay = document.getElementById('bridalSelectedCount');
+    const gramsDisplay = document.getElementById('bridalTotalGrams');
+    const pavunDisplay = document.getElementById('bridalTotalPavuns');
+    const pureCostDisplay = document.getElementById('bridalPureCost');
+    const makingCostDisplay = document.getElementById('bridalMakingCost');
+    const gstDisplay = document.getElementById('bridalGstCost');
+    const grandTotalDisplay = document.getElementById('bridalGrandTotal');
+    const btnBridalWhatsApp = document.getElementById('btnBridalWhatsApp');
+
+    const selected = bridalStateItems.filter(i => i.selected);
+    let totalGoldGrams = 0;
+    let totalGoldCost = 0;
+    let totalSilverCost = 0;
+    let totalMakingCost = 0;
+
+    const rate22k = state.rates.gold22k;
+    const rateSilver = state.rates.silver;
+
+    selected.forEach(item => {
+      if (item.isSilver) {
+        const itemCost = item.weight * rateSilver;
+        const making = itemCost * (item.makingPercent / 100);
+        totalSilverCost += itemCost;
+        totalMakingCost += making;
+      } else {
+        totalGoldGrams += item.weight;
+        const itemCost = item.weight * rate22k;
+        const making = itemCost * (item.makingPercent / 100);
+        totalGoldCost += itemCost;
+        totalMakingCost += making;
+      }
+    });
+
+    const totalPavuns = (totalGoldGrams / 8).toFixed(2);
+    const subtotal = totalGoldCost + totalSilverCost + totalMakingCost;
+    const gst = Math.round(subtotal * 0.03);
+    const grandTotal = Math.round(subtotal + gst);
+
+    if (countDisplay) countDisplay.textContent = `${selected.length} Ornaments Selected`;
+    if (gramsDisplay) gramsDisplay.textContent = `${totalGoldGrams.toFixed(3)} g`;
+    if (pavunDisplay) pavunDisplay.textContent = `~ ${totalPavuns} Sovereigns (Pavun)`;
+    if (pureCostDisplay) pureCostDisplay.textContent = `₹${Math.round(totalGoldCost + totalSilverCost).toLocaleString('en-IN')}`;
+    if (makingCostDisplay) makingCostDisplay.textContent = `+ ₹${Math.round(totalMakingCost).toLocaleString('en-IN')} (Avg Lowest V.A.)`;
+    if (gstDisplay) gstDisplay.textContent = `+ ₹${gst.toLocaleString('en-IN')} (3% GST)`;
+    if (grandTotalDisplay) grandTotalDisplay.textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+    if (btnBridalWhatsApp) {
+      const itemsListStr = selected.map(i => `• ${i.role}: ${i.name} (${i.weight}g)`).join('\n');
+      const waText = encodeURIComponent(
+        `Hello Jain Jewellers Bazaar Street Tiruvallur (+91 88255 59001),\nI planned my Bridal Muhurtham Jewellery Package on your website:\n\n${itemsListStr}\n\n• Total Gold Weight: ${totalGoldGrams.toFixed(3)}g (~${totalPavuns} Pavun)\n• Estimated Package Price: ₹${grandTotal.toLocaleString('en-IN')}\n\nPlease schedule a Bridal VIP Showroom Trial for my family.`
+      );
+      btnBridalWhatsApp.href = `https://wa.me/${state.config.whatsappNumber}?text=${waText}`;
+    }
+  }
+
+  // 5C. VIP LIVE VIDEO SHOPPING BOOKING SUITE
+  let selectedTimeSlot = "11:30 AM";
+  const timeChips = document.querySelectorAll('.time-chip');
+  timeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      timeChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      selectedTimeSlot = chip.getAttribute('data-slot');
+    });
+  });
+
+  const videoBookingForm = document.getElementById('videoShoppingForm');
+  if (videoBookingForm) {
+    videoBookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('videoCustName').value;
+      const phone = document.getElementById('videoCustPhone').value;
+      const date = document.getElementById('videoCustDate').value;
+      const category = document.getElementById('videoCustCategory').value;
+      const notes = document.getElementById('videoCustNotes').value;
+
+      const appointments = window.JainData.getStoredData(window.JainData.KEYS.APPOINTMENTS, window.JainData.DEFAULT_APPOINTMENTS);
+      const newApp = {
+        id: 'app-' + Date.now(),
+        customerName: name,
+        phone: phone,
+        category: category,
+        date: date || 'Tomorrow',
+        timeSlot: selectedTimeSlot,
+        mode: 'WhatsApp Video Call',
+        status: 'Confirmed',
+        notes: notes || 'Preferred jewellery live preview from showroom.'
+      };
+      appointments.unshift(newApp);
+      window.JainData.setStoredData(window.JainData.KEYS.APPOINTMENTS, appointments);
+
+      window.showToast(`VIP Video Call Slot booked for ${name} at ${selectedTimeSlot}!`, '📹');
+
+      // Pre-compose WhatsApp video appointment link
+      const waMsg = encodeURIComponent(
+        `Hello Jain Jewellers (+91 88255 59001),\nI booked a VIP Live Video Call Jewellery Preview:\n• Name: ${name}\n• Phone: ${phone}\n• Preferred Date: ${date || 'Tomorrow'}\n• Time Slot: ${selectedTimeSlot}\n• Items to view: ${category}\n• Notes: ${notes || 'None'}\nPlease send me the WhatsApp video call invite.`
+      );
+      window.open(`https://wa.me/${state.config.whatsappNumber}?text=${waMsg}`, '_blank');
+      videoBookingForm.reset();
+    });
   }
 
   // 6. Log Lead / Enquiry into Local Storage for Admin
@@ -694,12 +826,14 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNoticeBanner();
   renderRates();
   renderProducts();
+  renderBridalPlanner();
 
   // Background auto-fetch of daily live bullion rates
   window.JainData.fetchLiveBullionRates().then(res => {
     if (res && res.rates) {
       state.rates = res.rates;
       renderRates();
+      renderBridalPlanner();
     }
   }).catch(e => console.log('Live rate fetch silent catch:', e));
 });

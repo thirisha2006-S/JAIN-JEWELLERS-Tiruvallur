@@ -77,6 +77,8 @@
         <ul class="nav-menu">
           <li><a href="#home" class="nav-link active" onclick="window.switchView('store')">Home</a></li>
           <li><a href="#live-rates" class="nav-link" onclick="window.switchView('store')">Live Rates</a></li>
+          <li><a href="#bridal-planner" class="nav-link" onclick="window.switchView('store')">Bridal Planner</a></li>
+          <li><a href="#video-shopping" class="nav-link" onclick="window.switchView('store')">Live Video Call</a></li>
           <li><a href="#collections" class="nav-link" onclick="window.switchView('store')">Collections</a></li>
           <li><a href="#scheme" class="nav-link" onclick="window.switchView('store')">Gold Scheme</a></li>
           <li><a href="#showroom" class="nav-link" onclick="window.switchView('store')">Showroom</a></li>
@@ -499,6 +501,215 @@
       </div>
     </section>
 
+    <!-- 5B. BRIDAL MUHURTHAM JEWELLERY PACKAGE PLANNER -->
+    <section id="bridal-planner" class="bridal-planner-section">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-label" style="color: var(--color-primary-light);">Sacred South Indian Wedding Customizer</span>
+          <h2 class="section-title">
+            Bridal Muhurtham <span class="gold-highlight">Jewellery Package Planner</span>
+          </h2>
+          <p>
+            Build and estimate your dream bridal gold set with authentic 22K 916 BIS Hallmark purity. Select ornaments to see real-time gold weight in sovereigns (Pavun) and transparent pricing with lowest making charges.
+          </p>
+        </div>
+
+        <div class="bridal-planner-layout">
+          <!-- Interactive Checklist of Ornaments -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+              <span style="font-weight: 700; color: var(--color-primary-dark); font-size: 1rem;">
+                Select Muhurtham Ornaments:
+              </span>
+              <span id="bridalSelectedCount" style="font-size: 0.85rem; color: #166534; font-weight: 700;">
+                5 Ornaments Selected
+              </span>
+            </div>
+
+            <div id="bridalItemsList" class="bridal-items-list">
+              <!-- Rendered dynamically via js/app.js -->
+            </div>
+
+            <!-- Hallmark & HUID Transparency Card -->
+            <div class="hallmark-guide-banner">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-primary);"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                <h4 style="font-family: var(--font-serif); color: var(--color-primary-dark); font-size: 1.1rem;">
+                  Lalithaa Trust Hallmark: How to Check 100% BIS 916 Authenticity
+                </h4>
+              </div>
+              <p style="font-size: 0.84rem; color: var(--color-text-muted); margin-top: 6px;">
+                Every bridal item at Jain Jewellers Tiruvallur carries the official government 3-part laser engraving:
+              </p>
+
+              <div class="hallmark-steps-grid">
+                <div class="hallmark-step-card">
+                  <div class="hallmark-step-icon">1</div>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: var(--color-primary);">BIS Standard Triangle</strong>
+                    <p style="font-size: 0.78rem; color: #666; margin-top: 2px;">Bureau of Indian Standards hallmark logo.</p>
+                  </div>
+                </div>
+
+                <div class="hallmark-step-card">
+                  <div class="hallmark-step-icon">2</div>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: var(--color-primary);">22K 916 Fineness</strong>
+                    <p style="font-size: 0.78rem; color: #666; margin-top: 2px;">Certified 91.6% pure 22 karat gold stamp.</p>
+                  </div>
+                </div>
+
+                <div class="hallmark-step-card">
+                  <div class="hallmark-step-icon">3</div>
+                  <div>
+                    <strong style="font-size: 0.85rem; color: var(--color-primary);">6-Digit HUID Code</strong>
+                    <p style="font-size: 0.78rem; color: #666; margin-top: 2px;">Unique ID verifiable on the official BIS Care App.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sticky Summary Box -->
+          <div class="bridal-summary-sticky-card">
+            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #fce7c8; font-weight: 700;">
+              Your Wedding Package Estimate
+            </span>
+            <h3>Muhurtham Jewellery Box</h3>
+
+            <div class="bridal-weight-counter">
+              <div>
+                <div id="bridalTotalGrams" class="bridal-grams-large">153.200 g</div>
+                <div id="bridalTotalPavuns" class="bridal-sovereign-text">~ 19.15 Sovereigns (Pavun)</div>
+              </div>
+            </div>
+
+            <div class="bridal-price-breakdown">
+              <div class="line">
+                <span>Pure Metal Value (Live Rate):</span>
+                <strong id="bridalPureCost">₹10,34,100</strong>
+              </div>
+              <div class="line">
+                <span>Estimated Making Charges:</span>
+                <strong id="bridalMakingCost" style="color: #86efac;">+ ₹68,500 (Avg 6.6% V.A.)</strong>
+              </div>
+              <div class="line">
+                <span>Applicable GST (3%):</span>
+                <strong id="bridalGstCost">+ ₹33,078</strong>
+              </div>
+              <div class="line total">
+                <span>Total Package Price:</span>
+                <span id="bridalGrandTotal" style="color: var(--color-gold-bright);">₹11,35,678</span>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <a id="btnBridalWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="justify-content: center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+                <span>Send Bridal Wishlist on WhatsApp</span>
+              </a>
+              <a href="#video-shopping" class="btn-secondary" style="justify-content: center; border-color: rgba(255, 255, 255, 0.4);">
+                <span>Book Live Video Call Trial</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5C. VIP LIVE VIDEO SHOPPING SUITE -->
+    <section id="video-shopping" class="video-shopping-banner">
+      <div class="container">
+        <div class="video-shopping-grid">
+          
+          <div>
+            <span class="section-label" style="color: var(--color-gold-bright);">Personalized Digital Showroom</span>
+            <h2 style="font-family: var(--font-serif); font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin-bottom: 14px; line-height: 1.2;">
+              Preview Jewellery Live on <span class="gold-text">WhatsApp Video Call</span>
+            </h2>
+            <p style="font-size: 0.95rem; color: #ede2d3; line-height: 1.7; margin-bottom: 20px;">
+              Can't visit Bazaar Street right now? Book a 1-on-1 private video shopping appointment with our master jeweller. We will showcase necklaces, bridal sets, and bangles in high definition directly from our Tiruvallur showroom counters.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: #fce7c8; margin-bottom: 24px;">
+              <div>📹 <strong>1-on-1 Dedicated Specialist:</strong> View designs closely on real models/busts.</div>
+              <div>⚖️ <strong>Live Scale Weighing:</strong> Exact weight verification shown on digital precision balance.</div>
+              <div>🛡️ <strong>Zero Obligation:</strong> Free consultation with no mandatory purchase.</div>
+            </div>
+
+            <div style="font-size: 0.82rem; color: #bbb;">
+              Showroom Location: <strong>49, Bazaar Street, Tiruvallur, Tamil Nadu</strong>
+            </div>
+          </div>
+
+          <!-- Video Booking Form -->
+          <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1.5px solid rgba(201, 151, 56, 0.4); border-radius: var(--radius-lg); padding: 32px 28px;">
+            <h3 style="font-family: var(--font-serif); color: var(--color-gold-bright); font-size: 1.25rem; margin-bottom: 6px;">
+              Book Your Video Call Appointment
+            </h3>
+            <p style="font-size: 0.82rem; color: #ccc; margin-bottom: 20px;">
+              Select a convenient time slot and our staff will connect on WhatsApp.
+            </p>
+
+            <form id="videoShoppingForm">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                <div>
+                  <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">Your Name *</label>
+                  <input type="text" id="videoCustName" class="search-input" required placeholder="e.g. Radhika Sundaram">
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">WhatsApp Number *</label>
+                  <input type="tel" id="videoCustPhone" class="search-input" required placeholder="e.g. 98401 23456">
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                <div>
+                  <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">Preferred Date</label>
+                  <input type="date" id="videoCustDate" class="search-input" style="color: #fff;">
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">Interested Designs</label>
+                  <select id="videoCustCategory" class="sort-select" style="width: 100%; border-radius: 8px;">
+                    <option value="Bridal Muhurtham Sets">Bridal Muhurtham Sets</option>
+                    <option value="Antique Temple Necklaces">Antique Temple Necklaces</option>
+                    <option value="Gold Bangles & Kadas">Gold Bangles & Kadas</option>
+                    <option value="Certified Diamond Rings">Certified Diamond Rings</option>
+                    <option value="Daily Wear Chains">Daily Wear Chains</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 8px;">
+                <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">Choose Time Slot:</label>
+                <div class="time-slot-chips">
+                  <span class="time-chip" data-slot="10:30 AM">10:30 AM</span>
+                  <span class="time-chip active" data-slot="11:30 AM">11:30 AM</span>
+                  <span class="time-chip" data-slot="2:30 PM">2:30 PM</span>
+                  <span class="time-chip" data-slot="4:00 PM">4:00 PM</span>
+                  <span class="time-chip" data-slot="5:30 PM">5:30 PM</span>
+                  <span class="time-chip" data-slot="7:00 PM">7:00 PM</span>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; color: #eedcc8;">Special Requirements (Optional)</label>
+                <input type="text" id="videoCustNotes" class="search-input" placeholder="e.g. Looking for Lakshmi haaram under ₹3,50,000">
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <span>Confirm Video Appointment via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- 6. CUSTOMER REVIEWS (4.8/5 GOOGLE RATING SECTION) -->
     <section id="reviews" class="reviews-section">
       <div class="container">
@@ -714,6 +925,7 @@
         <button class="admin-tab-btn active" data-tab="products">Products Inventory</button>
         <button class="admin-tab-btn" data-tab="rates">Live Gold Rates</button>
         <button class="admin-tab-btn" data-tab="enquiries">Customer Enquiries</button>
+        <button class="admin-tab-btn" data-tab="appointments">Video Appointments</button>
         <button class="admin-tab-btn" data-tab="settings">Store Settings & Disclaimer</button>
       </div>
 
@@ -802,6 +1014,30 @@
               </tr>
             </thead>
             <tbody id="adminEnquiriesTableBody">
+              <!-- Rendered via js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Video Shopping Appointments -->
+      <div id="tabPaneAppointments" class="admin-card-panel" style="display: none;">
+        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 8px;">VIP Video Shopping Appointments</h3>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 20px;">Scheduled live showroom video appointments from customers.</p>
+        
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date & Slot</th>
+                <th>Customer</th>
+                <th>Interested Category</th>
+                <th>Notes / Specific Request</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminAppointmentsTableBody">
               <!-- Rendered via js/admin.js -->
             </tbody>
           </table>

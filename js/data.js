@@ -3,6 +3,7 @@ const DATA_KEYS = {
   PRODUCTS: 'jain_jewellers_products',
   RATES: 'jain_jewellers_rates',
   ENQUIRIES: 'jain_jewellers_enquiries',
+  APPOINTMENTS: 'jain_jewellers_appointments',
   STORE_CONFIG: 'jain_jewellers_config',
   RATES_CACHE_TIME: 'jain_jewellers_rates_cache_time'
 };
@@ -302,6 +303,123 @@ async function fetchLiveBullionRates(force = false) {
   return { rates: currentRates, source: 'stored' };
 }
 
+const DEFAULT_APPOINTMENTS = [
+  {
+    id: "app-101",
+    customerName: "Ananya Ramesh",
+    phone: "+91 98401 55667",
+    category: "Bridal Muhurtham Sets",
+    date: "Tomorrow",
+    timeSlot: "11:30 AM",
+    mode: "WhatsApp Video Call",
+    status: "Confirmed",
+    notes: "Wants to preview antique Lakshmi haarams and matching jhumkas."
+  },
+  {
+    id: "app-102",
+    customerName: "Senthil Nathan",
+    phone: "+91 97910 22334",
+    category: "Diamond Engagement Rings",
+    date: "Saturday",
+    timeSlot: "4:00 PM",
+    mode: "Showroom VIP Trial",
+    status: "Pending",
+    notes: "Looking for certified 1 ct solitaire ring."
+  }
+];
+
+const DEFAULT_BRIDAL_ITEMS = [
+  {
+    id: "br-1",
+    role: "Choker / Necklet",
+    name: "Royal Lakshmi Antique Choker",
+    weight: 32.000,
+    purity: "22K BIS 916",
+    makingPercent: 6.5,
+    image: "assets/images/temple-necklace.jpg",
+    selected: true,
+    essential: true
+  },
+  {
+    id: "br-2",
+    role: "Long Haaram",
+    name: "Grand Mango Temple Haaram",
+    weight: 48.500,
+    purity: "22K BIS 916",
+    makingPercent: 7.0,
+    image: "assets/images/temple-necklace.jpg",
+    selected: true,
+    essential: true
+  },
+  {
+    id: "br-3",
+    role: "Kada Bangles (Pair)",
+    name: "Peacock Nakshi Gold Bangles",
+    weight: 36.200,
+    purity: "22K BIS 916",
+    makingPercent: 6.0,
+    image: "assets/images/gold-bangles.jpg",
+    selected: true,
+    essential: true
+  },
+  {
+    id: "br-4",
+    role: "Bridal Earrings",
+    name: "Antique Temple Jhumkas with Mattal",
+    weight: 22.800,
+    purity: "22K BIS 916",
+    makingPercent: 7.5,
+    image: "assets/images/jhumka-earrings.jpg",
+    selected: true,
+    essential: true
+  },
+  {
+    id: "br-5",
+    role: "Maang Tikka (Nethi Chutti)",
+    name: "Lakshmi Kasu Royal Maang Tikka",
+    weight: 14.500,
+    purity: "22K BIS 916",
+    makingPercent: 6.5,
+    image: "assets/images/hero-bridal.jpg",
+    selected: true,
+    essential: false
+  },
+  {
+    id: "br-6",
+    role: "Royal Vaddanam (Waistbelt)",
+    name: "Imperial Antique Lakshmi Oddiyanam",
+    weight: 64.000,
+    purity: "22K BIS 916",
+    makingPercent: 8.0,
+    image: "assets/images/hero-bridal.jpg",
+    selected: false,
+    essential: false
+  },
+  {
+    id: "br-7",
+    role: "Diamond Solitaire Ring",
+    name: "Certified 1.25 ct Diamond Ring",
+    weight: 5.400,
+    purity: "18K Gold + Diamond",
+    makingPercent: 9.0,
+    image: "assets/images/diamond-ring.jpg",
+    selected: false,
+    essential: false
+  },
+  {
+    id: "br-8",
+    role: "Pure Silver Set",
+    name: "Bridal Silver Kolusu & Metti Set",
+    weight: 120.000,
+    purity: "Pure Silver 92.5",
+    makingPercent: 5.0,
+    image: "assets/images/temple-necklace.jpg",
+    selected: true,
+    essential: false,
+    isSilver: true
+  }
+];
+
 // Initializer
 function initStoreData() {
   if (!localStorage.getItem(DATA_KEYS.PRODUCTS)) {
@@ -312,6 +430,9 @@ function initStoreData() {
   }
   if (!localStorage.getItem(DATA_KEYS.ENQUIRIES)) {
     setStoredData(DATA_KEYS.ENQUIRIES, DEFAULT_ENQUIRIES);
+  }
+  if (!localStorage.getItem(DATA_KEYS.APPOINTMENTS)) {
+    setStoredData(DATA_KEYS.APPOINTMENTS, DEFAULT_APPOINTMENTS);
   }
   if (!localStorage.getItem(DATA_KEYS.STORE_CONFIG)) {
     setStoredData(DATA_KEYS.STORE_CONFIG, DEFAULT_STORE_CONFIG);
@@ -328,5 +449,8 @@ window.JainData = {
   DEFAULT_PRODUCTS,
   DEFAULT_RATES,
   DEFAULT_STORE_CONFIG,
-  DEFAULT_REVIEWS
+  DEFAULT_REVIEWS,
+  DEFAULT_APPOINTMENTS,
+  DEFAULT_BRIDAL_ITEMS
 };
+

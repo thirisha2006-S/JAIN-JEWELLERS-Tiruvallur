@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabProducts = document.getElementById('tabPaneProducts');
   const tabRates = document.getElementById('tabPaneRates');
   const tabEnquiries = document.getElementById('tabPaneEnquiries');
+  const tabAppointments = document.getElementById('tabPaneAppointments');
   const tabSettings = document.getElementById('tabPaneSettings');
 
   const statTotalProducts = document.getElementById('statTotalProducts');
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const productsTableBody = document.getElementById('adminProductsTableBody');
   const enquiriesTableBody = document.getElementById('adminEnquiriesTableBody');
+  const appointmentsTableBody = document.getElementById('adminAppointmentsTableBody');
 
   const productFormModal = document.getElementById('productFormModal');
   const closeProductModalBtn = document.getElementById('closeProductModalBtn');
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tabProducts) tabProducts.style.display = tabName === 'products' ? 'block' : 'none';
       if (tabRates) tabRates.style.display = tabName === 'rates' ? 'block' : 'none';
       if (tabEnquiries) tabEnquiries.style.display = tabName === 'enquiries' ? 'block' : 'none';
+      if (tabAppointments) tabAppointments.style.display = tabName === 'appointments' ? 'block' : 'none';
       if (tabSettings) tabSettings.style.display = tabName === 'settings' ? 'block' : 'none';
     });
   });
@@ -62,9 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const products = window.JainData.getStoredData(window.JainData.KEYS.PRODUCTS, window.JainData.DEFAULT_PRODUCTS);
     const enquiries = window.JainData.getStoredData(window.JainData.KEYS.ENQUIRIES, window.JainData.DEFAULT_ENQUIRIES);
     const rates = window.JainData.getStoredData(window.JainData.KEYS.RATES, window.JainData.DEFAULT_RATES);
+    const appointments = window.JainData.getStoredData(window.JainData.KEYS.APPOINTMENTS, window.JainData.DEFAULT_APPOINTMENTS);
 
     if (statTotalProducts) statTotalProducts.textContent = products.length;
-    if (statTotalEnquiries) statTotalEnquiries.textContent = enquiries.length;
+    if (statTotalEnquiries) statTotalEnquiries.textContent = (enquiries.length + appointments.length);
     if (statGoldRate22k) statGoldRate22k.textContent = `₹${rates.gold22k}/g`;
     if (statStockCount) statStockCount.textContent = products.filter(p => p.inStock).length;
   }
@@ -160,6 +164,60 @@ document.addEventListener('DOMContentLoaded', () => {
       </tr>
     `).join('');
   }
+
+  // Render Appointments Table
+  function renderAppointmentsTable() {
+    if (!appointmentsTableBody) return;
+    const appointments = window.JainData.getStoredData(window.JainData.KEYS.APPOINTMENTS, window.JainData.DEFAULT_APPOINTMENTS);
+
+    if (appointments.length === 0) {
+      appointmentsTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 30px;">No video call appointments booked yet.</td></tr>`;
+      return;
+    }
+
+    appointmentsTableBody.innerHTML = appointments.map((app) => `
+      <tr>
+        <td><strong>${app.date}</strong><br><small style="color: var(--color-gold); font-weight: 700;">${app.timeSlot}</small></td>
+        <td>
+          <div style="font-weight: 700;">${app.customerName}</div>
+          <small style="color: var(--color-text-muted);">${app.phone}</small>
+        </td>
+        <td>
+          <span style="font-weight: 600; color: var(--color-primary);">${app.category}</span>
+          <div><small style="color: #666;">${app.mode}</small></div>
+        </td>
+        <td style="max-width: 200px;">
+          <div style="font-size: 0.82rem; color: #444;">${app.notes}</div>
+        </td>
+        <td>
+          <span class="badge-stock ${app.status === 'Confirmed' ? 'instock' : 'outstock'}" style="background: ${app.status === 'Confirmed' ? '#dcfce7' : '#fef3c7'}; color: ${app.status === 'Confirmed' ? '#166534' : '#92400e'};">
+            ${app.status}
+          </span>
+        </td>
+        <td>
+          <div class="table-action-btns">
+            <a href="https://wa.me/${app.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hello ' + app.customerName + ', Jain Jewellers Tiruvallur is ready for your VIP Video Call appointment regarding ' + app.category + '. Shall we connect now?')}" target="_blank" class="btn-icon-admin" title="Start WhatsApp Video Call" style="color: #15803d;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+            </a>
+            <button class="btn-icon-admin delete" title="Toggle Confirmed" onclick="window.markAppointmentConfirmed('${app.id}')">
+              ✓
+            </button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  window.markAppointmentConfirmed = (id) => {
+    const apps = window.JainData.getStoredData(window.JainData.KEYS.APPOINTMENTS, window.JainData.DEFAULT_APPOINTMENTS);
+    const target = apps.find(a => a.id === id);
+    if (target) {
+      target.status = target.status === 'Confirmed' ? 'Completed' : 'Confirmed';
+      window.JainData.setStoredData(window.JainData.KEYS.APPOINTMENTS, apps);
+      renderAppointmentsTable();
+      window.showToast(`Appointment status updated to ${target.status}`, '📅');
+    }
+  };
 
   // Populate Rates Form
   function populateRatesForm() {
@@ -403,6 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStats();
     renderProductsTable();
     renderEnquiriesTable();
+    renderAppointmentsTable();
     populateRatesForm();
     populateSettingsForm();
   };
