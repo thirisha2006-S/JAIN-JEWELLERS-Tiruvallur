@@ -2141,9 +2141,299 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
+   LIVE BULLION RATES BOARD & CALCULATOR SECTION
+   ========================================================================== */
+.bullion-board-section {
+  padding: 65px 0 75px 0;
+  background: linear-gradient(180deg, #180206 0%, #29040a 100%);
+  color: #fff;
+  border-bottom: 2px solid var(--color-gold);
+  position: relative;
+}
+
+.bullion-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid rgba(201, 151, 56, 0.3);
+  padding-bottom: 20px;
+}
+
+.bullion-title-wrap h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.bullion-title-wrap h2 span.gold-highlight {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bullion-title-wrap p {
+  color: #d8c7b5;
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.bullion-meta-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.rate-badge-live-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22c55e;
+  color: #4ade80;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-refresh-rates {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201, 151, 56, 0.18);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-bright);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-refresh-rates:hover {
+  background: var(--color-gold-gradient);
+  color: #2b0409;
+}
+
+.btn-refresh-rates.spinning svg {
+  animation: spinRate 1s linear infinite;
+}
+
+@keyframes spinRate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.btn-whatsapp-alerts {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #0b3417;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-whatsapp-alerts:hover {
+  background: #1eb956;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Metal Cards Grid */
+.bullion-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.metal-rate-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 151, 56, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.metal-rate-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold-bright);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.metal-rate-card.featured {
+  background: linear-gradient(135deg, rgba(88, 11, 24, 0.4) 0%, rgba(35, 3, 9, 0.6) 100%);
+  border: 1.5px solid var(--color-gold-bright);
+}
+
+.metal-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.metal-name-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-gold-bright);
+  line-height: 1.2;
+}
+
+.metal-purity-tag {
+  font-size: 0.72rem;
+  color: #eedcc8;
+  display: block;
+  margin-top: 2px;
+}
+
+.metal-trend-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.metal-trend-pill.up {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.metal-trend-pill.down {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.metal-price-hero {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.metal-price-hero span.unit {
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  color: #d1c1b0;
+  font-weight: normal;
+}
+
+.metal-subrates-list {
+  list-style: none;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #d6c8b9;
+}
+
+.metal-subrates-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metal-subrates-list strong {
+  color: #fff;
+}
+
+/* Calculator & Estimation Box */
+.bullion-calc-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 151, 56, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.calc-form-col h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--color-gold-bright);
+  margin-bottom: 8px;
+}
+
+.calc-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 0.82rem;
+  color: #e5d8ca;
+  margin-bottom: 6px;
+}
+
+.calc-estimate-result-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(201, 151, 56, 0.3);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.calc-estimate-result-box .res-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  color: #ddd;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.calc-estimate-result-box .res-line.total {
+  border-bottom: none;
+  padding-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-bright);
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
+  .bullion-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bullion-calc-container {
+    grid-template-columns: 1fr;
+  }
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2162,6 +2452,13 @@ button, input, select, textarea {
 }
 
 @media (max-width: 768px) {
+  .bullion-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .bullion-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .rate-ticker-container {
     flex-direction: column;
     align-items: flex-start;

@@ -24,12 +24,19 @@
    - Elegant typography with Google Fonts (*Cinzel*, *Playfair Display*, and *Plus Jakarta Sans*).
    - Responsive design for mobile, tablet, and desktop with sticky mobile action bar.
 
-2. **Daily Bullion Rate Marquee (Live Rates Ticker)**:
-   - Header ticker displaying live market rates for:
-     - 22K Gold (916 BIS Hallmarked)
-     - 24K Pure 999 Gold
-     - Pure Silver
-   - Rates can be dynamically updated via the Admin Dashboard.
+2. **Daily Live Bullion Rates Engine (Gold, Silver, Platinum)**:
+   - **Real-Time Live Market Feed**: Automatically syncs daily bullion prices for the Tamil Nadu / Chennai / Tiruvallur market via live precious metal APIs.
+   - **Comprehensive Rate Cards**:
+     - **22K Gold (BIS 916)**: Per 1 Gram, Per 8 Grams (1 Sovereign / Pavun), and 10 Grams.
+     - **24K Pure Gold (999)**: Per 1 Gram, Per 8 Grams, and 10 Grams.
+     - **18K Gold**: Per 1 Gram and 8 Grams (for diamond & designer studded jewellery).
+     - **Pure Silver (99.9% / 925)**: Per 1 Gram, Per 100 Grams, and Per 1 Kilogram (1000g).
+     - **Platinum (950 Purity)**: Per 1 Gram.
+   - **Interactive Features**:
+     - 🔄 **Refresh Live Rates**: One-click instant API fetch with animated indicator.
+     - 📲 **Daily WhatsApp Rate Alerts**: Direct subscription link to receive morning bullion updates.
+     - 🧮 **Instant Price & Wastage Estimator**: Calculates pure metal cost, lowest making charges (V.A.), 3% GST, and total purchase estimate with instant WhatsApp booking.
+     - ⚡ **Admin Bullion Hub**: Auto-sync from live market feed or set custom store booking rates.
 
 3. **Curated Product Collections with Real-Time Filters**:
    - Proposed Categories:

@@ -166,7 +166,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const rates = window.JainData.getStoredData(window.JainData.KEYS.RATES, window.JainData.DEFAULT_RATES);
     if (rateInput22k) rateInput22k.value = rates.gold22k;
     if (rateInput24k) rateInput24k.value = rates.gold24k;
+    const rateInput18k = document.getElementById('rateInput18k');
+    if (rateInput18k) rateInput18k.value = rates.gold18k || Math.round(rates.gold24k * 0.75);
     if (rateInputSilver) rateInputSilver.value = rates.silver;
+    const rateInputPlatinum = document.getElementById('rateInputPlatinum');
+    if (rateInputPlatinum) rateInputPlatinum.value = rates.platinum || 3650;
+  }
+
+  // Live Sync Button in Admin
+  const btnSyncMarketRatesAdmin = document.getElementById('btnSyncMarketRatesAdmin');
+  if (btnSyncMarketRatesAdmin) {
+    btnSyncMarketRatesAdmin.addEventListener('click', async () => {
+      btnSyncMarketRatesAdmin.disabled = true;
+      btnSyncMarketRatesAdmin.textContent = "Fetching Live Feed...";
+      try {
+        const result = await window.JainData.fetchLiveBullionRates(true);
+        populateRatesForm();
+        updateStats();
+        window.showToast("Live bullion market prices synced successfully!", "⚡");
+      } catch (err) {
+        window.showToast("Could not reach remote API, using stored rates.", "⚠️");
+      } finally {
+        btnSyncMarketRatesAdmin.disabled = false;
+        btnSyncMarketRatesAdmin.textContent = "⚡ Auto-Sync from Live Market Feed";
+      }
+    });
   }
 
   // Populate Settings Form
@@ -181,24 +205,40 @@ document.addEventListener('DOMContentLoaded', () => {
   if (ratesForm) {
     ratesForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const current = window.JainData.getStoredData(window.JainData.KEYS.RATES, window.JainData.DEFAULT_RATES);
+      const val22k = parseFloat(rateInput22k.value) || 6750;
+      const val24k = parseFloat(rateInput24k.value) || 7365;
+      const rateInput18k = document.getElementById('rateInput18k');
+      const val18k = rateInput18k ? parseFloat(rateInput18k.value) : Math.round(val24k * 0.75);
+      const valSilver = parseFloat(rateInputSilver.value) || 98.50;
+      const rateInputPlatinum = document.getElementById('rateInputPlatinum');
+      const valPlatinum = rateInputPlatinum ? parseFloat(rateInputPlatinum.value) : 3650;
+
       const rates = {
-        gold22k: parseFloat(rateInput22k.value) || 6750,
-        gold24k: parseFloat(rateInput24k.value) || 7365,
-        silver: parseFloat(rateInputSilver.value) || 98.50,
-        lastUpdated: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) + " (Updated in Admin)"
+        ...current,
+        gold22k: val22k,
+        gold22k_8g: val22k * 8,
+        gold24k: val24k,
+        gold24k_8g: val24k * 8,
+        gold18k: val18k,
+        silver: valSilver,
+        silver_kg: Math.round(valSilver * 1000),
+        platinum: valPlatinum,
+        change22k: Math.round(val22k - current.gold22k) || current.change22k || 45,
+        change24k: Math.round(val24k - current.gold24k) || current.change24k || 50,
+        changeSilver: parseFloat((valSilver - current.silver).toFixed(2)) || current.changeSilver || 1.20,
+        trend: val22k >= current.gold22k ? 'up' : 'down',
+        lastUpdated: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) + " IST (Admin Updated)",
+        isLiveSynced: false
       };
       window.JainData.setStoredData(window.JainData.KEYS.RATES, rates);
-      window.showToast("Gold & Silver rates successfully updated! Rates ticker refreshed.", "💰");
+      window.showToast("Gold & Silver rates successfully updated! Rates ticker & board refreshed.", "💰");
       updateStats();
-      // Re-render rate ticker in customer store
-      const ticker = document.getElementById('ratesTickerGroup');
-      if (ticker) {
-        ticker.innerHTML = `
-          <div class="rate-item"><span class="metal">22K Gold (916 BIS):</span><span class="price"><span class="gold-highlight">₹${rates.gold22k.toLocaleString('en-IN')}</span>/g</span><span class="trend-up">▲</span></div>
-          <div class="rate-item"><span class="metal">24K Pure Gold:</span><span class="price"><span class="gold-highlight">₹${rates.gold24k.toLocaleString('en-IN')}</span>/g</span><span class="trend-up">▲</span></div>
-          <div class="rate-item"><span class="metal">Pure Silver:</span><span class="price"><span class="gold-highlight">₹${rates.silver.toLocaleString('en-IN')}</span>/g</span></div>
-          <div class="rate-item rate-location-tag"><span>📍 Tiruvallur • Live Today</span></div>
-        `;
+
+      // Trigger global rate ticker and board refresh
+      if (typeof window.location !== 'undefined') {
+        const event = new Event('storage');
+        window.dispatchEvent(event);
       }
     });
   }

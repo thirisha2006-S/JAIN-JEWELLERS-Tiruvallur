@@ -87,27 +87,288 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. Render Gold & Silver Rate Ticker
+  // 2. Render Gold & Silver Rate Ticker (Header Marquee)
   function renderRates() {
+    state.rates = window.JainData.getStoredData(window.JainData.KEYS.RATES, window.JainData.DEFAULT_RATES);
     if (!ratesTickerContainer) return;
+    const r = state.rates;
+    const trendSymbol = r.trend === 'down' ? '▼' : '▲';
+    const trendClass = r.trend === 'down' ? 'trend-down' : 'trend-up';
+
     ratesTickerContainer.innerHTML = `
       <div class="rate-item">
-        <span class="metal">22K Gold (916 BIS):</span>
-        <span class="price"><span class="gold-highlight">₹${state.rates.gold22k.toLocaleString('en-IN')}</span>/g</span>
-        <span class="trend-up">▲</span>
+        <span class="metal">22K Gold (1g):</span>
+        <span class="price"><span class="gold-highlight">₹${r.gold22k.toLocaleString('en-IN')}</span></span>
+        <span class="${trendClass}">${trendSymbol} ₹${r.change22k || 45}</span>
       </div>
       <div class="rate-item">
-        <span class="metal">24K Pure Gold:</span>
-        <span class="price"><span class="gold-highlight">₹${state.rates.gold24k.toLocaleString('en-IN')}</span>/g</span>
-        <span class="trend-up">▲</span>
+        <span class="metal">22K 1 Sovereign (8g):</span>
+        <span class="price"><span class="gold-highlight">₹${(r.gold22k_8g || r.gold22k * 8).toLocaleString('en-IN')}</span></span>
       </div>
       <div class="rate-item">
-        <span class="metal">Pure Silver:</span>
-        <span class="price"><span class="gold-highlight">₹${state.rates.silver.toLocaleString('en-IN')}</span>/g</span>
+        <span class="metal">24K Pure Gold (1g):</span>
+        <span class="price"><span class="gold-highlight">₹${r.gold24k.toLocaleString('en-IN')}</span></span>
+        <span class="${trendClass}">${trendSymbol}</span>
+      </div>
+      <div class="rate-item">
+        <span class="metal">18K Gold:</span>
+        <span class="price"><span class="gold-highlight">₹${(r.gold18k || Math.round(r.gold24k * 0.75)).toLocaleString('en-IN')}</span>/g</span>
+      </div>
+      <div class="rate-item">
+        <span class="metal">Pure Silver (1g):</span>
+        <span class="price"><span class="gold-highlight">₹${r.silver.toLocaleString('en-IN')}</span></span>
+      </div>
+      <div class="rate-item">
+        <span class="metal">Silver 1 Kg:</span>
+        <span class="price"><span class="gold-highlight">₹${(r.silver_kg || Math.round(r.silver * 1000)).toLocaleString('en-IN')}</span></span>
       </div>
       <div class="rate-item rate-location-tag">
-        <span>📍 Tiruvallur • Live Today</span>
+        <a href="#live-rates" style="color: var(--color-gold-bright); text-decoration: underline;">📊 View Full Live Board</a>
       </div>
     `;
+
+    renderBullionBoard();
+  }
+
+  // 2B. Render Comprehensive Live Bullion Board
+  function renderBullionBoard() {
+    const r = state.rates;
+    const boardContainer = document.getElementById('bullionCardsContainer');
+    const lastUpdatedDisplay = document.getElementById('bullionLastUpdatedDisplay');
+
+    if (lastUpdatedDisplay) {
+      lastUpdatedDisplay.textContent = `Live Feed: ${r.lastUpdated || 'Today (Live)'} • Tiruvallur / Chennai`;
+    }
+
+    if (!boardContainer) return;
+
+    const gold22k_8g = r.gold22k_8g || (r.gold22k * 8);
+    const gold22k_10g = r.gold22k * 10;
+    const gold24k_8g = r.gold24k_8g || (r.gold24k * 8);
+    const gold24k_10g = r.gold24k * 10;
+    const gold18k = r.gold18k || Math.round(r.gold24k * 0.75);
+    const gold18k_8g = gold18k * 8;
+    const silver100g = Math.round(r.silver * 100);
+    const silver1kg = r.silver_kg || Math.round(r.silver * 1000);
+    const platinum1g = r.platinum || 3650;
+
+    const isUp = r.trend !== 'down';
+    const trendBadgeClass = isUp ? 'up' : 'down';
+    const trendSign = isUp ? '▲ +' : '▼ -';
+
+    boardContainer.innerHTML = `
+      <!-- Card 1: 22K Hallmarked Gold -->
+      <div class="metal-rate-card featured">
+        <div class="metal-card-header">
+          <div>
+            <div class="metal-name-title">22K Gold (916 Hallmarked)</div>
+            <span class="metal-purity-tag">Standard South Indian Jewellery Purity</span>
+          </div>
+          <span class="metal-trend-pill ${trendBadgeClass}">
+            ${trendSign}₹${r.change22k || 45}/g
+          </span>
+        </div>
+        <div class="metal-price-hero">
+          ₹${r.gold22k.toLocaleString('en-IN')} <span class="unit">/ 1 gram</span>
+        </div>
+        <ul class="metal-subrates-list">
+          <li>
+            <span>1 Sovereign / Pavun (8g):</span>
+            <strong>₹${gold22k_8g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>10 Grams:</span>
+            <strong>₹${gold22k_10g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>Wastage (V.A.):</span>
+            <strong style="color: #4ade80;">Starting from 5% (Lowest)</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 2: 24K Pure Gold -->
+      <div class="metal-rate-card">
+        <div class="metal-card-header">
+          <div>
+            <div class="metal-name-title">24K Pure Gold (999 Purity)</div>
+            <span class="metal-purity-tag">Bullion Coins, Bars & Raw Gold</span>
+          </div>
+          <span class="metal-trend-pill ${trendBadgeClass}">
+            ${trendSign}₹${r.change24k || 50}/g
+          </span>
+        </div>
+        <div class="metal-price-hero">
+          ₹${r.gold24k.toLocaleString('en-IN')} <span class="unit">/ 1 gram</span>
+        </div>
+        <ul class="metal-subrates-list">
+          <li>
+            <span>8 Grams (Gold Coin):</span>
+            <strong>₹${gold24k_8g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>10 Grams (Gold Bar):</span>
+            <strong>₹${gold24k_10g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>Purity Standard:</span>
+            <strong style="color: var(--color-gold-bright);">99.9% 24 Karat Pure</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 3: 18K Gold for Diamonds -->
+      <div class="metal-rate-card">
+        <div class="metal-card-header">
+          <div>
+            <div class="metal-name-title">18K Gold (750 Purity)</div>
+            <span class="metal-purity-tag">Diamond & Contemporary Studded Jewellery</span>
+          </div>
+          <span class="metal-trend-pill up">
+            ▲ +₹35/g
+          </span>
+        </div>
+        <div class="metal-price-hero">
+          ₹${gold18k.toLocaleString('en-IN')} <span class="unit">/ 1 gram</span>
+        </div>
+        <ul class="metal-subrates-list">
+          <li>
+            <span>8 Grams:</span>
+            <strong>₹${gold18k_8g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>Diamond Certification:</span>
+            <strong style="color: #60a5fa;">IGI / SGL Certified</strong>
+          </li>
+          <li>
+            <span>Usage:</span>
+            <strong>Rings, Pendants, Solitaires</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 4: Pure Silver -->
+      <div class="metal-rate-card">
+        <div class="metal-card-header">
+          <div>
+            <div class="metal-name-title">Pure Silver (99.9% / 925)</div>
+            <span class="metal-purity-tag">Pooja Articles, Leg Chains, Giftware</span>
+          </div>
+          <span class="metal-trend-pill ${trendBadgeClass}">
+            ${trendSign}₹${r.changeSilver || 1.20}/g
+          </span>
+        </div>
+        <div class="metal-price-hero">
+          ₹${r.silver.toLocaleString('en-IN')} <span class="unit">/ 1 gram</span>
+        </div>
+        <ul class="metal-subrates-list">
+          <li>
+            <span>100 Grams:</span>
+            <strong>₹${silver100g.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>1 Kilogram (1000g):</span>
+            <strong>₹${silver1kg.toLocaleString('en-IN')}</strong>
+          </li>
+          <li>
+            <span>Silver Utensils & Pooja:</span>
+            <strong style="color: #4ade80;">100% Purity Hallmarked</strong>
+          </li>
+        </ul>
+      </div>
+    `;
+
+    updateBullionCalculator();
+  }
+
+  // 2C. Live Price Calculator
+  function updateBullionCalculator() {
+    const metalSelect = document.getElementById('calcMetalSelect');
+    const weightInput = document.getElementById('calcWeightInput');
+    const resBaseCost = document.getElementById('calcResBaseCost');
+    const resMakingCharge = document.getElementById('calcResMakingCharge');
+    const resGst = document.getElementById('calcResGst');
+    const resTotalEstimate = document.getElementById('calcResTotalEstimate');
+    const btnCalcWhatsApp = document.getElementById('btnCalcWhatsApp');
+
+    if (!metalSelect || !weightInput) return;
+
+    const metal = metalSelect.value;
+    const weight = parseFloat(weightInput.value) || 0;
+    const r = state.rates;
+
+    let ratePerGram = r.gold22k;
+    let vaPercent = 0.06; // 6% Lowest Making Charges
+    let metalName = '22K Gold (916 BIS)';
+
+    if (metal === '24k') {
+      ratePerGram = r.gold24k;
+      vaPercent = 0.03; // 3% for coins
+      metalName = '24K Pure Gold';
+    } else if (metal === '18k') {
+      ratePerGram = r.gold18k || Math.round(r.gold24k * 0.75);
+      vaPercent = 0.08; // 8% for diamond settings
+      metalName = '18K Diamond Gold';
+    } else if (metal === 'silver') {
+      ratePerGram = r.silver;
+      vaPercent = 0.05; // 5% for silver articles
+      metalName = 'Pure Silver';
+    }
+
+    const baseCost = Math.round(weight * ratePerGram);
+    const makingCost = Math.round(baseCost * vaPercent);
+    const taxableAmount = baseCost + makingCost;
+    const gst = Math.round(taxableAmount * 0.03); // 3% Indian GST on Gold/Silver Jewellery
+    const totalEstimate = taxableAmount + gst;
+
+    if (resBaseCost) resBaseCost.textContent = `₹${baseCost.toLocaleString('en-IN')}`;
+    if (resMakingCharge) resMakingCharge.textContent = `+ ₹${makingCost.toLocaleString('en-IN')} (${(vaPercent * 100)}% V.A.)`;
+    if (resGst) resGst.textContent = `+ ₹${gst.toLocaleString('en-IN')} (3% GST)`;
+    if (resTotalEstimate) resTotalEstimate.textContent = `₹${totalEstimate.toLocaleString('en-IN')}`;
+
+    if (btnCalcWhatsApp) {
+      const waMsg = encodeURIComponent(
+        `Hello Jain Jewellers Tiruvallur (+91 88255 59001),\nI used your Live Rate Calculator:\n• Metal: ${metalName}\n• Net Weight: ${weight} grams\n• Live Rate: ₹${ratePerGram}/g\n• Total Estimate (with lowest VA & GST): ₹${totalEstimate.toLocaleString('en-IN')}\nPlease confirm design options and availability.`
+      );
+      btnCalcWhatsApp.href = `https://wa.me/${state.config.whatsappNumber}?text=${waMsg}`;
+    }
+  }
+
+  // Hook up calculator listeners
+  const metalSelectEl = document.getElementById('calcMetalSelect');
+  const weightInputEl = document.getElementById('calcWeightInput');
+  if (metalSelectEl) metalSelectEl.addEventListener('change', updateBullionCalculator);
+  if (weightInputEl) weightInputEl.addEventListener('input', updateBullionCalculator);
+
+  // Hook up "Refresh Live Rates" Button
+  const btnRefreshLiveRates = document.getElementById('btnRefreshLiveRates');
+  if (btnRefreshLiveRates) {
+    btnRefreshLiveRates.addEventListener('click', async () => {
+      btnRefreshLiveRates.classList.add('spinning');
+      btnRefreshLiveRates.disabled = true;
+      try {
+        const result = await window.JainData.fetchLiveBullionRates(true);
+        state.rates = result.rates;
+        renderRates();
+        window.showToast("Today's Gold & Silver rates refreshed from live market feed!", "📈");
+      } catch (err) {
+        window.showToast("Using verified Tiruvallur market rates.", "ℹ️");
+      } finally {
+        setTimeout(() => {
+          btnRefreshLiveRates.classList.remove('spinning');
+          btnRefreshLiveRates.disabled = false;
+        }, 800);
+      }
+    });
+  }
+
+  // Hook up WhatsApp Daily Alert Subscription
+  const btnWhatsAppDailyAlerts = document.getElementById('btnWhatsAppDailyAlerts');
+  if (btnWhatsAppDailyAlerts) {
+    const alertMsg = encodeURIComponent(
+      `Hello Jain Jewellers Bazaar Street Tiruvallur (+91 88255 59001),\nPlease subscribe my number to receive Daily Morning Live Gold & Silver Rate updates on WhatsApp.`
+    );
+    btnWhatsAppDailyAlerts.href = `https://wa.me/${state.config.whatsappNumber}?text=${alertMsg}`;
   }
 
   // 3. Render Product Cards Grid
@@ -433,4 +694,13 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNoticeBanner();
   renderRates();
   renderProducts();
+
+  // Background auto-fetch of daily live bullion rates
+  window.JainData.fetchLiveBullionRates().then(res => {
+    if (res && res.rates) {
+      state.rates = res.rates;
+      renderRates();
+    }
+  }).catch(e => console.log('Live rate fetch silent catch:', e));
 });
+

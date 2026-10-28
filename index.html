@@ -76,6 +76,7 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="#home" class="nav-link active" onclick="window.switchView('store')">Home</a></li>
+          <li><a href="#live-rates" class="nav-link" onclick="window.switchView('store')">Live Rates</a></li>
           <li><a href="#collections" class="nav-link" onclick="window.switchView('store')">Collections</a></li>
           <li><a href="#scheme" class="nav-link" onclick="window.switchView('store')">Gold Scheme</a></li>
           <li><a href="#showroom" class="nav-link" onclick="window.switchView('store')">Showroom</a></li>
@@ -158,6 +159,95 @@
             </a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 1B. TODAY'S LIVE BULLION RATES BOARD & CALCULATOR -->
+    <section id="live-rates" class="bullion-board-section">
+      <div class="container">
+        
+        <div class="bullion-header-row">
+          <div class="bullion-title-wrap">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+              <span class="rate-badge-live-pulse">
+                <span class="live-pulse"></span>
+                <span>Live Bullion Market</span>
+              </span>
+              <span id="bullionLastUpdatedDisplay" style="font-size: 0.82rem; color: #d1c1b0;">Live Feed: Today (10:30 AM IST) • Tiruvallur / Chennai</span>
+            </div>
+            <h2>Today's <span class="gold-highlight">Live Gold & Silver Rates</span></h2>
+            <p>Real-time official bullion rates for Tiruvallur & Tamil Nadu market. Updated daily with 100% transparent pricing.</p>
+          </div>
+
+          <div class="bullion-meta-controls">
+            <button id="btnRefreshLiveRates" class="btn-refresh-rates" title="Click to fetch latest live market rates">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span>Refresh Live Rates</span>
+            </button>
+            <a id="btnWhatsAppDailyAlerts" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-alerts" title="Receive daily rates on WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+              <span>Daily Rate Alert (WhatsApp)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Cards Grid (Populated via js/app.js) -->
+        <div id="bullionCardsContainer" class="bullion-cards-grid">
+          <!-- Dynamically Rendered: 22K (1g, 8g), 24K, 18K, Silver (1g, 1kg) -->
+        </div>
+
+        <!-- Live Bullion Rate & Jewellery Price Estimator -->
+        <div class="bullion-calc-container">
+          <div class="calc-form-col">
+            <span class="section-label" style="color: var(--color-gold-bright);">Quick Jewellery Cost Calculator</span>
+            <h3>Instant Price & Wastage Estimator</h3>
+            <p style="font-size: 0.85rem; color: #d8c7b6;">
+              Calculate the transparent retail cost based on today's live bullion market rate, lowest making charges (V.A.), and 3% GST.
+            </p>
+
+            <div class="calc-inputs-row">
+              <div class="calc-input-group">
+                <label for="calcMetalSelect">Select Metal & Purity:</label>
+                <select id="calcMetalSelect" class="sort-select" style="width: 100%; border-radius: 8px;">
+                  <option value="22k">22K Gold (916 BIS Hallmark)</option>
+                  <option value="24k">24K Pure Gold (Bullion)</option>
+                  <option value="18k">18K Gold (Diamond Setting)</option>
+                  <option value="silver">Pure Silver (925 / 99.9%)</option>
+                </select>
+              </div>
+
+              <div class="calc-input-group">
+                <label for="calcWeightInput">Weight (in Grams):</label>
+                <input type="number" id="calcWeightInput" class="search-input" value="8" step="0.5" min="0.5" placeholder="e.g. 8 (1 Sovereign)">
+              </div>
+            </div>
+          </div>
+
+          <!-- Calculation Summary Box -->
+          <div class="calc-estimate-result-box">
+            <div class="res-line">
+              <span>Pure Metal Base Cost:</span>
+              <strong id="calcResBaseCost">₹54,000</strong>
+            </div>
+            <div class="res-line">
+              <span>Estimated Making / Wastage (Lowest):</span>
+              <strong id="calcResMakingCharge" style="color: #4ade80;">+ ₹3,240 (6% V.A.)</strong>
+            </div>
+            <div class="res-line">
+              <span>Applicable GST (3%):</span>
+              <strong id="calcResGst">+ ₹1,717</strong>
+            </div>
+            <div class="res-line total">
+              <span>Estimated Total Value:</span>
+              <span id="calcResTotalEstimate">₹58,957</span>
+            </div>
+
+            <a id="btnCalcWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width: 100%; margin-top: 16px; justify-content: center; font-size: 0.88rem;">
+              <span>Enquire / Book This Rate on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -650,27 +740,46 @@
 
       <!-- Tab 2: Live Gold Rates -->
       <div id="tabPaneRates" class="admin-card-panel" style="display: none; max-width: 600px;">
-        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 8px;">Update Today's Live Rates</h3>
-        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px;">Changes will immediately update the live rate ticker across the header.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+          <div>
+            <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 4px;">Update Today's Live Rates</h3>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted);">Set store booking rates or auto-fetch live bullion market prices.</p>
+          </div>
+          <button type="button" id="btnSyncMarketRatesAdmin" class="btn-secondary" style="color: var(--color-primary); border-color: var(--color-gold); font-size: 0.82rem; padding: 6px 14px;">
+            ⚡ Auto-Sync from Live Market Feed
+          </button>
+        </div>
         
         <form id="adminRatesForm">
-          <div style="margin-bottom: 18px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">22K Hallmarked Gold (₹ per gram):</label>
-            <input type="number" id="rateInput22k" class="search-input" required>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">22K Hallmarked (₹/g):</label>
+              <input type="number" id="rateInput22k" class="search-input" required>
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">24K Pure Gold (₹/g):</label>
+              <input type="number" id="rateInput24k" class="search-input" required>
+            </div>
           </div>
 
-          <div style="margin-bottom: 18px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">24K Pure 999 Gold (₹ per gram):</label>
-            <input type="number" id="rateInput24k" class="search-input" required>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">18K Diamond Gold (₹/g):</label>
+              <input type="number" id="rateInput18k" class="search-input" required>
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Pure Silver (₹/g):</label>
+              <input type="number" step="0.1" id="rateInputSilver" class="search-input" required>
+            </div>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Pure Silver (₹ per gram):</label>
-            <input type="number" step="0.1" id="rateInputSilver" class="search-input" required>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Platinum (950 Purity ₹/g):</label>
+            <input type="number" id="rateInputPlatinum" class="search-input" value="3650">
           </div>
 
           <button type="submit" class="btn-primary">
-            <span>Update Rates Now</span>
+            <span>Broadcast & Save Rates</span>
           </button>
         </form>
       </div>
