@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAIN JEWELLERS | Elegance in Every Element | Tiruvallur</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Jain Jewellers, 49 Bazaar Street, Tiruvallur. Elegant jewellery, traditional 22K 916 BIS Hallmarked gold, diamond rings, bridal sets and antique necklaces with lowest making charges.">
+  <meta name="keywords" content="Jain Jewellers, Tiruvallur Jewellery, 916 Gold, Bridal Jewellery, Temple Jewellery, Bazaar Street Tiruvallur, Gold Rate Tiruvallur, Lalithaa Jewellery Style">
+  <meta name="author" content="Jain Jewellers">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="JAIN JEWELLERS | Elegance in Every Element">
+  <meta property="og:description" content="Traditional 22K 916 BIS Gold, Diamond & Bridal Jewellery in Bazaar Street, Tiruvallur. Rated 4.8/5 on Google.">
+  <meta property="og:image" content="assets/images/hero-bridal.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP NOTIFICATION BAR (OWNER VERIFICATION & AI MOCKUP DISCLAIMER)
+       ========================================================================== -->
+  <aside id="topNoticeBanner" class="top-notice-banner" role="alert">
+    <div class="container notice-inner">
+      <div class="notice-text">
+        <span class="notice-badge">Verification Notice</span>
+        <span>
+          Sample website preview: Please <strong>confirm phone (+91 88255 59001) with owner</strong> before publishing. Showroom building photo is an AI-generated architectural mockup.
+        </span>
+      </div>
+      <div class="notice-actions">
+        <button class="notice-btn" onclick="window.switchView('admin')">Admin Config</button>
+        <button id="dismissNoticeBtn" class="notice-close" aria-label="Dismiss disclaimer">&times;</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       LIVE GOLD & SILVER RATE TICKER (Lalithaa Jewellery Signature)
+       ========================================================================== -->
+  <section class="gold-rate-ticker-wrap" aria-label="Today's Live Bullion Rates">
+    <div class="container rate-ticker-container">
+      <div class="rate-badge-title">
+        <span class="live-pulse"></span>
+        <span>Today's Bullion Rates</span>
+      </div>
+      <div id="ratesTickerGroup" class="rate-items-group">
+        <!-- Injected via JavaScript from LocalStorage / Live Rates -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MAIN NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand-link" onclick="window.switchView('store')">
+        <div class="brand-emblem">JJ</div>
+        <div class="brand-info">
+          <span class="brand-title">Jain Jewellers</span>
+          <span class="brand-sub">Elegance in Every Element • Tiruvallur</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active" onclick="window.switchView('store')">Home</a></li>
+          <li><a href="#collections" class="nav-link" onclick="window.switchView('store')">Collections</a></li>
+          <li><a href="#scheme" class="nav-link" onclick="window.switchView('store')">Gold Scheme</a></li>
+          <li><a href="#showroom" class="nav-link" onclick="window.switchView('store')">Showroom</a></li>
+          <li><a href="#reviews" class="nav-link" onclick="window.switchView('store')">Reviews</a></li>
+          <li><a href="#contact" class="nav-link" onclick="window.switchView('store')">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header CTAs -->
+      <div class="header-actions">
+        <a href="tel:+918825559001" class="btn-header-call" title="Call Jain Jewellers">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>+91 88255 59001</span>
+        </a>
+        <button id="navAdminBtn" class="btn-admin-portal" title="Open Admin Dashboard">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+          <span>Admin</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CUSTOMER STOREFRONT VIEW CONTAINER
+       ========================================================================== -->
+  <main id="customerViewContainer">
+
+    <!-- 1. HERO SHOWROOM BANNER -->
+    <section id="home" class="hero-section">
+      <img src="assets/images/hero-bridal.jpg" alt="Jain Jewellers Bridal Collection" class="hero-background-image">
+      <div class="hero-overlay"></div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge-tag">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Tiruvallur's Hallmark Jewellery Destination</span>
+          </div>
+
+          <h1 class="hero-title">
+            JAIN JEWELLERS<br>
+            <span class="gold-text">Elegance in Every Element</span>
+          </h1>
+
+          <p class="hero-tagline-motto">
+            Elegant jewellery • Traditional designs • Special occasions
+          </p>
+
+          <p class="hero-description">
+            Discover unmatched South Indian craftsmanship in 22K 916 BIS Hallmarked gold, exquisite certified diamond sets, and royal temple bridal collections with transparent pricing and the lowest making charges in Tiruvallur.
+          </p>
+
+          <div class="hero-trust-row">
+            <div class="hero-trust-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <span>100% BIS 916 Hallmarked</span>
+            </div>
+            <div class="hero-trust-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>Rated 4.8/5 (9 Google Reviews)</span>
+            </div>
+            <div class="hero-trust-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              <span>Lowest Wastage (V.A.)</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="#collections" class="btn-primary" id="btnExploreCollection">
+              <span>Explore Collection</span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="btnGetDirections">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>Get Directions</span>
+            </a>
+            <a href="https://wa.me/918825559001?text=Hello%20Jain%20Jewellers%2C%20I%20would%20like%20to%20enquire%20about%20your%20jewellery%20collection%20and%20today's%20gold%20rate." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero" id="btnWhatsAppHero">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. LALITHAA STYLE TRUST & VALUE PROPOSITIONS -->
+    <section class="trust-banner-section" aria-label="Customer Trust Pillars">
+      <div class="container">
+        <div class="trust-grid">
+          
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <div class="trust-text">
+              <h4>100% BIS 916 Hallmarked</h4>
+              <p>Government certified hallmark engraved on every gold jewellery item.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="trust-text">
+              <h4>Lowest Making Charges</h4>
+              <p>Lalithaa style transparent wastage (V.A.) with zero inflated bills.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="trust-text">
+              <h4>4.8★ Google Rating</h4>
+              <p>Trusted by families in Tiruvallur with 9 authentic positive Google reviews.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            </div>
+            <div class="trust-text">
+              <h4>Computerized Honest Bill</h4>
+              <p>Clear gross weight, net weight, stone deduction and gold purity.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SHOWROOM & ARCHITECTURAL PREVIEW -->
+    <section id="showroom" class="showroom-feature-section">
+      <div class="container">
+        <div class="showroom-grid">
+          
+          <div class="showroom-image-frame">
+            <img src="assets/images/showroom-facade.jpg" alt="Jain Jewellers Showroom Exterior Facade" class="showroom-img">
+            <div class="showroom-mockup-tag">
+              <div>
+                <span class="badge">Architectural Mockup</span>
+                <span style="margin-left: 6px;">AI concept visualization for sample website</span>
+              </div>
+              <span style="color: var(--color-gold-bright); font-weight: 700;">Tiruvallur</span>
+            </div>
+          </div>
+
+          <div class="showroom-content-box">
+            <span class="section-label">Showroom Landmark</span>
+            <h2 class="section-title">
+              Visit <span class="gold-highlight">Jain Jewellers</span> in the Heart of Tiruvallur
+            </h2>
+
+            <div class="google-review-pill">
+              <span class="stars-row">★★★★★</span>
+              <span class="rating-score">4.8 / 5.0</span>
+              <span class="review-count-text">(9 Google Verified Reviews)</span>
+            </div>
+
+            <p class="showroom-desc">
+              Located on bustling <strong>49, Bazaar Street, Tiruvallur</strong>, Jain Jewellers is your premier retail destination for traditional heirloom gold, lightweight daily wear chains, bridal haarams, and diamond solitaires. Step inside to experience warm personalized service and genuine hallmarked jewellery.
+            </p>
+
+            <div class="showroom-info-cards">
+              <div class="info-mini-card">
+                <h5>
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  Store Address
+                </h5>
+                <p>49, Bazaar Street, Tiruvallur, Tamil Nadu 602001</p>
+              </div>
+
+              <div class="info-mini-card">
+                <h5>
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 15H11v-6h1.5v6zm0-8H11V7h1.5v2z"/></svg>
+                  Showroom Timings
+                </h5>
+                <p>Monday – Sunday: 9:30 AM to 9:00 PM</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Open Google Maps</span>
+              </a>
+              <a href="#contact" class="btn-secondary" style="color: var(--color-primary); border-color: var(--color-primary);">
+                <span>Contact Store</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COLLECTIONS & INTERACTIVE PRODUCT CATALOG -->
+    <section id="collections" class="collections-section">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-label">Curated Catalogue</span>
+          <h2 class="section-title">Explore Our <span class="gold-highlight">Fine Jewellery</span></h2>
+          <p>
+            Choose from proposed categories: Gold jewellery, Chains and necklaces, Earrings and bangles, and Bridal jewellery and rings. Each piece is crafted in BIS 916 Hallmarked purity with lowest making charges.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="catalog-controls-card">
+          <div class="catalog-search-row">
+            <div class="search-input-wrap">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="productSearchInput" class="search-input" placeholder="Search by design, weight, purity (e.g. haaram, kada, jhumka, 916)...">
+            </div>
+
+            <div class="sort-select-wrap">
+              <label for="productSortSelect">Sort by:</label>
+              <select id="productSortSelect" class="sort-select">
+                <option value="featured">Featured First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="weight-low">Weight: Lightest First</option>
+                <option value="weight-high">Weight: Heaviest First</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="category-filter-tabs">
+            <button class="cat-btn active" data-cat="all">All Collections</button>
+            <button class="cat-btn" data-cat="Gold jewellery">Gold Jewellery</button>
+            <button class="cat-btn" data-cat="Chains and necklaces">Chains & Necklaces</button>
+            <button class="cat-btn" data-cat="Earrings and bangles">Earrings & Bangles</button>
+            <button class="cat-btn" data-cat="Bridal jewellery and rings">Bridal Jewellery & Rings</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div id="productsGrid" class="products-grid">
+          <!-- Dynamic product cards populated via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. LALITHAA STYLE GOLD SAVINGS SCHEME (CHIT PLAN) CALCULATOR -->
+    <section id="scheme" class="scheme-calculator-section">
+      <div class="container">
+        <div class="scheme-grid">
+          
+          <div class="scheme-info-col">
+            <span class="section-label" style="color: var(--color-gold-bright);">Advance Purchase Savings Plan</span>
+            <h2>
+              Swarna Dhana <span class="gold-highlight">11-Month Gold Scheme</span>
+            </h2>
+            <p class="scheme-lead">
+              Inspired by South India's most popular jewellery purchase schemes (like Lalithaa Golden Gain). Protect against gold price hikes, gain 1 full month bonus contribution, and enjoy <strong>0% Making & Wastage Charges</strong> on your chosen jewellery upon maturity!
+            </p>
+
+            <ul class="scheme-perks-list">
+              <li>
+                <span class="scheme-check-icon">✓</span>
+                <span><strong>1 Month Bonus:</strong> Jain Jewellers adds 1 installment on your behalf.</span>
+              </li>
+              <li>
+                <span class="scheme-check-icon">✓</span>
+                <span><strong>100% Wastage Waiver:</strong> Zero making charges up to standard limit on gold purchase.</span>
+              </li>
+              <li>
+                <span class="scheme-check-icon">✓</span>
+                <span><strong>Gold Weight Lock-in:</strong> Monthly installments convert directly at daily 22K rate.</span>
+              </li>
+              <li>
+                <span class="scheme-check-icon">✓</span>
+                <span><strong>Flexible Slabs:</strong> Start from as low as ₹1,000/month up to ₹50,000/month.</span>
+              </li>
+            </ul>
+
+            <div style="font-size: 0.85rem; color: #eed5be; font-style: italic;">
+              * Scheme terms subject to owner confirmation. Visit store at 49, Bazaar Street, Tiruvallur for full prospectus.
+            </div>
+          </div>
+
+          <!-- Interactive Calculator Card -->
+          <div class="calculator-card">
+            <h3>Gold Scheme Benefit Calculator</h3>
+            <p class="calc-sub">Slide to preview your 11-month savings and bonus weight</p>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="slider-label">Monthly Installment:</span>
+                <span id="schemeAmountDisplay" class="slider-val-display">₹5,000</span>
+              </div>
+              <input type="range" id="schemeAmountSlider" class="custom-range-slider" min="1000" max="50000" step="1000" value="5000">
+            </div>
+
+            <div class="calc-breakdown-box">
+              <div class="breakdown-row">
+                <span>Tenure Duration:</span>
+                <strong id="schemeTenureMonths">11 Months</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Your Total Contribution (11 Months):</span>
+                <strong id="schemeTotalPaid">₹55,000</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Jain Jewellers Bonus Perk:</span>
+                <strong id="schemeBonusBenefit" class="gold">+ ₹5,000 (1 Month Free)</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Equivalent Gold Grams (Approx 22K):</span>
+                <strong id="schemeGoldAccumulated" class="gold">~ 8.88 g</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Total Maturity Purchasing Value:</span>
+                <strong id="schemeMaturityValue" style="color: var(--color-gold-bright);">₹60,000</strong>
+              </div>
+            </div>
+
+            <a id="btnSchemeWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="btn-scheme-enquire">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+              <span>Enroll via WhatsApp (+91 88255 59001)</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CUSTOMER REVIEWS (4.8/5 GOOGLE RATING SECTION) -->
+    <section id="reviews" class="reviews-section">
+      <div class="container">
+        
+        <div class="reviews-summary-card">
+          <div class="summary-score-group">
+            <div class="score-big">4.8</div>
+            <div class="summary-details">
+              <h4>Jain Jewellers Tiruvallur</h4>
+              <div class="stars-row" style="margin-bottom: 4px;">★★★★★</div>
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+                Overall Rating from <strong>9 Google Customer Reviews</strong>
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color: var(--color-primary); border-color: var(--color-gold);">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>View Google Maps Reviews</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="reviews-cards-grid">
+          
+          <div class="review-testimonial-card">
+            <div class="review-header">
+              <span class="reviewer-name">Karthik Subramanian</span>
+              <span class="reviewer-badge">Verified Customer</span>
+            </div>
+            <div class="stars-row" style="font-size: 0.85rem; margin-bottom: 8px;">★★★★★</div>
+            <p class="review-comment">
+              "Best jewellery shop in Tiruvallur Bazaar Street. Lowest making charges compared to large corporate showrooms. The owner explained gold purity and 916 hallmark very clearly. 100% recommended!"
+            </p>
+            <div class="review-footer">
+              <span>Google Review</span>
+              <span>2 weeks ago</span>
+            </div>
+          </div>
+
+          <div class="review-testimonial-card">
+            <div class="review-header">
+              <span class="reviewer-name">Meenakshi Sundaram</span>
+              <span class="reviewer-badge">Verified Customer</span>
+            </div>
+            <div class="stars-row" style="font-size: 0.85rem; margin-bottom: 8px;">★★★★★</div>
+            <p class="review-comment">
+              "Bought antique bridal haaram and bangles for my daughter's wedding. Designs are comparable to Lalithaa and GRT, but price and wastage percentage are much more honest and customer friendly."
+            </p>
+            <div class="review-footer">
+              <span>Google Review</span>
+              <span>1 month ago</span>
+            </div>
+          </div>
+
+          <div class="review-testimonial-card">
+            <div class="review-header">
+              <span class="reviewer-name">Vignesh Kumar</span>
+              <span class="reviewer-badge">Verified Customer</span>
+            </div>
+            <div class="stars-row" style="font-size: 0.85rem; margin-bottom: 8px;">★★★★★</div>
+            <p class="review-comment">
+              "Very polite behavior from the staff. They gave proper computer bill with complete breakdown of daily gold rate, gross weight, net weight and making charges. Prime location in Bazaar Street."
+            </p>
+            <div class="review-footer">
+              <span>Google Review</span>
+              <span>2 months ago</span>
+            </div>
+          </div>
+
+          <div class="review-testimonial-card">
+            <div class="review-header">
+              <span class="reviewer-name">Radha Jayaraman</span>
+              <span class="reviewer-badge">Verified Customer</span>
+            </div>
+            <div class="stars-row" style="font-size: 0.85rem; margin-bottom: 8px;">★★★★★</div>
+            <p class="review-comment">
+              "Extremely reliable family jewellers in Tiruvallur. The gold scheme calculation is very beneficial. Custom temple design was crafted with utmost perfection and delivered on time."
+            </p>
+            <div class="review-footer">
+              <span>Google Review</span>
+              <span>3 months ago</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. STORE LOCATION, MAPS & CONTACT -->
+    <section id="contact" class="location-section">
+      <div class="container">
+        <div class="location-grid">
+          
+          <div class="location-info-panel">
+            <span class="section-label">Showroom Address</span>
+            <h2 class="location-title">Visit Our Tiruvallur Store</h2>
+
+            <div class="location-address-box">
+              <div class="address-line">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <div>
+                  <strong>49, Bazaar Street, Tiruvallur,</strong><br>
+                  Tamil Nadu 602001
+                </div>
+              </div>
+              <div class="landmark-text">
+                Central Bazaar Street commercial jewellery quarter, near main market temple.
+              </div>
+            </div>
+
+            <div class="contact-meta-list">
+              <div class="contact-meta-item">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <div>
+                  Phone: <strong>+91 88255 59001</strong>
+                  <div class="owner-confirm-pill">
+                    <span>⚠️ Note: Confirm contact details with owner before publishing</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-meta-item">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 15H11v-6h1.5v6zm0-8H11V7h1.5v2z"/></svg>
+                <div>
+                  Timings: <strong>Monday to Sunday: 9:30 AM to 9:00 PM</strong>
+                </div>
+              </div>
+
+              <div class="contact-meta-item">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <div>
+                  Rating: <strong>4.8 / 5.0 (9 Verified Reviews on Google Maps)</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-buttons-group">
+              <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btnDirectionsLocation">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Get Directions</span>
+              </a>
+              <a href="https://wa.me/918825559001?text=Hello%20Jain%20Jewellers%2C%20I%20am%20visiting%20your%20Bazaar%20Street%20Tiruvallur%20showroom.%20Please%20share%20directions%20and%20timings." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+                <span>WhatsApp Enquiry</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="map-embed-wrapper">
+            <iframe 
+              src="https://maps.google.com/maps?q=49%2C+Bazaar+Street%2C+Tiruvallur%2C+Tamil+Nadu+602001&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+              title="Jain Jewellers 49 Bazaar Street Tiruvallur Google Map"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       ADMIN PORTAL VIEW CONTAINER (SAMPLE ADMIN PAGE)
+       ========================================================================== -->
+  <section id="adminViewContainer" class="admin-section" aria-label="Jain Jewellers Admin Dashboard">
+    <div class="container">
+      
+      <div class="admin-header-bar">
+        <div class="admin-title-group">
+          <h2>Admin Dashboard</h2>
+          <p>Manage product catalog, daily gold rates, enquiries, and store configuration.</p>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button id="btnAddNewProduct" class="btn-primary">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+            <span>Add New Product</span>
+          </button>
+          <button id="backToStoreBtn" class="btn-secondary" style="color: var(--color-primary-dark); border-color: var(--color-primary-dark);">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span>Return to Store</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Summary Stat Cards -->
+      <div class="admin-stat-cards">
+        <div class="stat-card">
+          <div class="label">Total Products</div>
+          <div id="statTotalProducts" class="value">8</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Customer Enquiries</div>
+          <div id="statTotalEnquiries" class="value">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Today's 22K Gold Rate</div>
+          <div id="statGoldRate22k" class="value">₹6,750/g</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Available in Stock</div>
+          <div id="statStockCount" class="value">8</div>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="admin-nav-tabs">
+        <button class="admin-tab-btn active" data-tab="products">Products Inventory</button>
+        <button class="admin-tab-btn" data-tab="rates">Live Gold Rates</button>
+        <button class="admin-tab-btn" data-tab="enquiries">Customer Enquiries</button>
+        <button class="admin-tab-btn" data-tab="settings">Store Settings & Disclaimer</button>
+      </div>
+
+      <!-- Tab 1: Products Inventory -->
+      <div id="tabPaneProducts" class="admin-card-panel">
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product Details</th>
+                <th>Weight & Purity</th>
+                <th>Price & VA</th>
+                <th>Stock Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTableBody">
+              <!-- Rendered via js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 2: Live Gold Rates -->
+      <div id="tabPaneRates" class="admin-card-panel" style="display: none; max-width: 600px;">
+        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 8px;">Update Today's Live Rates</h3>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px;">Changes will immediately update the live rate ticker across the header.</p>
+        
+        <form id="adminRatesForm">
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">22K Hallmarked Gold (₹ per gram):</label>
+            <input type="number" id="rateInput22k" class="search-input" required>
+          </div>
+
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">24K Pure 999 Gold (₹ per gram):</label>
+            <input type="number" id="rateInput24k" class="search-input" required>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Pure Silver (₹ per gram):</label>
+            <input type="number" step="0.1" id="rateInputSilver" class="search-input" required>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <span>Update Rates Now</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab 3: Customer Enquiries -->
+      <div id="tabPaneEnquiries" class="admin-card-panel" style="display: none;">
+        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 8px;">Customer Leads & Enquiries</h3>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 20px;">Enquiries generated from website buttons and WhatsApp clicks.</p>
+        
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Interested Design</th>
+                <th>Message / Requirement</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminEnquiriesTableBody">
+              <!-- Rendered via js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Store Settings & Disclaimer -->
+      <div id="tabPaneSettings" class="admin-card-panel" style="display: none; max-width: 650px;">
+        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 8px;">Store Settings & Verification</h3>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px;">Confirm details with owner or adjust business listing properties.</p>
+
+        <form id="adminSettingsForm">
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Primary Phone Number:</label>
+            <input type="text" id="settingPhone" class="search-input" value="+91 88255 59001">
+            <small style="color: #b45309; display: block; margin-top: 4px;">Confirm with owner before final deployment.</small>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Showroom Address:</label>
+            <textarea id="settingAddress" class="search-input" style="height: 70px; border-radius: 8px; resize: none;">49, Bazaar Street, Tiruvallur, Tamil Nadu 602001</textarea>
+          </div>
+
+          <div style="margin-bottom: 24px; background: var(--color-cream); padding: 16px; border-radius: 8px; border: 1px solid #ddd;">
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+              <input type="checkbox" id="settingDisclaimerToggle" checked style="width: 18px; height: 18px;">
+              <span style="font-size: 0.88rem; font-weight: 600; color: var(--color-text-main);">
+                Display "AI Mockup & Owner Verification" Disclaimer Banner on Storefront
+              </span>
+            </label>
+            <small style="display: block; color: var(--color-text-muted); margin-top: 6px; margin-left: 28px;">
+              Uncheck once the shop owner has approved contact details and real photography.
+            </small>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <button type="submit" class="btn-primary">Save Settings</button>
+            <button type="button" id="btnResetDefaults" class="btn-secondary" style="color: #991b1b; border-color: #f87171;">Reset Sample Data</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER SECTION
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <h3>JAIN JEWELLERS</h3>
+          <p class="tagline">Elegance in Every Element</p>
+          <p class="desc">
+            Traditional South Indian 22K 916 BIS Hallmarked gold jewellery, antique temple collections, bridal sets and certified diamonds. Serving families with transparent making charges and trusted billing.
+          </p>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--color-gold-bright);">
+            <span>★★★★★</span>
+            <span>4.8/5 on Google (9 Reviews)</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Proposed Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#collections" onclick="window.switchView('store')">Gold Jewellery</a></li>
+            <li><a href="#collections" onclick="window.switchView('store')">Chains & Necklaces</a></li>
+            <li><a href="#collections" onclick="window.switchView('store')">Earrings & Bangles</a></li>
+            <li><a href="#collections" onclick="window.switchView('store')">Bridal Jewellery & Rings</a></li>
+            <li><a href="#collections" onclick="window.switchView('store')">Antique Temple Sets</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#scheme" onclick="window.switchView('store')">11-Month Gold Scheme</a></li>
+            <li><a href="#showroom" onclick="window.switchView('store')">Showroom Landmark</a></li>
+            <li><a href="#reviews" onclick="window.switchView('store')">Customer Testimonials</a></li>
+            <li><a href="#contact" onclick="window.switchView('store')">Google Maps Directions</a></li>
+            <li><a href="#admin" onclick="window.switchView('admin')">Admin Management Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Showroom Location</h4>
+          <ul class="footer-contact-details">
+            <li>
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>49, Bazaar Street, Tiruvallur, Tamil Nadu 602001</span>
+            </li>
+            <li>
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>+91 88255 59001 (Confirm with owner)</span>
+            </li>
+            <li>
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 15H11v-6h1.5v6zm0-8H11V7h1.5v2z"/></svg>
+              <span>Mon – Sun: 9:30 AM – 9:00 PM</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>JAIN JEWELLERS</strong>, Tiruvallur. All Rights Reserved. Built sample website inspired by Lalithaa Jewellery.
+        </div>
+        <div>
+          <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">Google Maps Listing</a> • 
+          <a href="#admin" onclick="window.switchView('admin')">Admin Login</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       STICKY MOBILE BOTTOM ACTION BAR (Lalithaa / Kalyan Mobile Pattern)
+       ========================================================================== -->
+  <aside class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
+    <div class="mobile-bottom-inner">
+      <a href="tel:+918825559001" class="mobile-action-btn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span>Call</span>
+      </a>
+
+      <a href="https://wa.me/918825559001?text=Hello%20Jain%20Jewellers%20Tiruvallur%2C%20I%20would%20like%20to%20enquire%20about%20your%20jewellery." target="_blank" rel="noopener noreferrer" class="mobile-action-btn whatsapp-accent">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.196.533 1.284.043.088.072.19.014.305-.058.115-.087.19-.174.29-.087.102-.182.227-.26.305-.087.087-.178.182-.076.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.088.275.073.376-.044.101-.116.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <a href="https://maps.app.goo.gl/XpYz5cSGum5c9qGAA?g_st=awb&utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="mobile-action-btn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <span>Directions</span>
+      </a>
+
+      <button id="mobileNavAdminBtn" class="mobile-action-btn" style="background: none; border: none; cursor: pointer;">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+        <span>Admin</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MODAL: QUICK VIEW PRODUCT
+       ========================================================================== -->
+  <div id="quickViewModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="quickViewTitle">
+    <div class="modal-dialog">
+      <button id="closeQuickViewBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div id="quickViewContent">
+        <!-- Rendered dynamically via js/app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: ADD / EDIT PRODUCT (ADMIN)
+       ========================================================================== -->
+  <div id="productFormModal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width: 600px; padding: 30px;">
+      <button id="closeProductModalBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <h3 id="productModalTitle" style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 20px;">Add New Jewellery Piece</h3>
+      
+      <form id="productForm">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Product Name *</label>
+          <input type="text" id="inputProdName" class="search-input" required placeholder="e.g. Royal Antique Gold Haaram">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Category *</label>
+            <select id="inputProdCategory" class="sort-select" style="width: 100%; border-radius: 8px;">
+              <option value="Gold jewellery">Gold jewellery</option>
+              <option value="Chains and necklaces">Chains and necklaces</option>
+              <option value="Earrings and bangles">Earrings and bangles</option>
+              <option value="Bridal jewellery and rings">Bridal jewellery and rings</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Purity *</label>
+            <select id="inputProdPurity" class="sort-select" style="width: 100%; border-radius: 8px;">
+              <option value="22K BIS 916">22K BIS 916 Hallmarked</option>
+              <option value="18K Gold + Diamond">18K Certified Diamond</option>
+              <option value="Pure Silver 92.5">Pure Silver 92.5</option>
+              <option value="24K Pure Gold">24K Pure Gold</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Weight (Grams) *</label>
+            <input type="text" id="inputProdWeight" class="search-input" required placeholder="e.g. 36.500">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Estimated Price (₹) *</label>
+            <input type="number" id="inputProdPrice" class="search-input" required placeholder="e.g. 250000">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Making Charge / Wastage</label>
+            <input type="text" id="inputProdMakingCharge" class="search-input" placeholder="e.g. 6% V.A.">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Photo URL / Asset</label>
+            <select id="inputProdImage" class="sort-select" style="width: 100%; border-radius: 8px;">
+              <option value="assets/images/temple-necklace.jpg">Temple Necklace Photo</option>
+              <option value="assets/images/gold-bangles.jpg">Peacock Bangles Photo</option>
+              <option value="assets/images/jhumka-earrings.jpg">Temple Jhumkas Photo</option>
+              <option value="assets/images/diamond-ring.jpg">Diamond Solitaire Ring Photo</option>
+              <option value="assets/images/hero-bridal.jpg">Grand Bridal Set Photo</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">Product Description</label>
+          <textarea id="inputProdDescription" class="search-input" style="height: 60px; border-radius: 8px; resize: none;" placeholder="Details about gemstones, hallmark, craftsmanship..."></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="checkbox" id="inputProdInStock" checked style="width: 18px; height: 18px;">
+            <span style="font-size: 0.88rem; font-weight: 600;">Currently in stock at Tiruvallur showroom</span>
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end;">
+          <button type="submit" class="btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

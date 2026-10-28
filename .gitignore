@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Agent / Tool internal files
+.agent/
+.autoclaw/
+.claude/
+.clinerules/
+.kilocodemodes
+.agents/
+.gemini/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
