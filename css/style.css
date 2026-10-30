@@ -2991,3 +2991,5 @@ button, input, select, textarea {
 .bridal-action-btns a { flex:1; min-width:220px; }
 
 .bridal-trust-row { display:flex; gap:12px; flex-wrap:nowrap; justify-content:center; white-space:nowrap; }
+
+.bridal-btn-secondary, a.bridal-btn-secondary { display:inline-block !important; background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600 !important; padding:14px 28px !important; border-radius:999px !important; opacity:1 !important; visibility:visible !important; }
