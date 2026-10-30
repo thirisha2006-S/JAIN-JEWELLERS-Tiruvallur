@@ -2422,7 +2422,8 @@ button, input, select, textarea {
    ========================================================================== */
 .bridal-planner-section {
   padding: 70px 0 80px;
-  background: linear-gradient(160deg, #fdf8ee 60%, #fef3e2 100%);
+  background: linear-gradient(160deg, #fdf8ee 60%, #fef3e2 100%), url('../assets/images/hero-bridal.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
   border-bottom: 1px solid rgba(201, 151, 56, 0.2);
 }
 
