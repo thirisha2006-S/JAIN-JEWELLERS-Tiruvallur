@@ -90,42 +90,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Render Gold & Silver Rate Ticker (Header Marquee)
   function renderRates() {
     state.rates = window.JainData.getStoredData(window.JainData.KEYS.RATES, window.JainData.DEFAULT_RATES);
-    if (!ratesTickerContainer) return;
-    const r = state.rates;
-    const trendSymbol = r.trend === 'down' ? '▼' : '▲';
-    const trendClass = r.trend === 'down' ? 'trend-down' : 'trend-up';
+    if (ratesTickerContainer) {
+      const r = state.rates;
+      const trendSymbol = r.trend === 'down' ? '▼' : '▲';
+      const trendClass = r.trend === 'down' ? 'trend-down' : 'trend-up';
 
-    ratesTickerContainer.innerHTML = `
-      <div class="rate-item">
-        <span class="metal">22K Gold (1g):</span>
-        <span class="price"><span class="gold-highlight">₹${r.gold22k.toLocaleString('en-IN')}</span></span>
-        <span class="${trendClass}">${trendSymbol} ₹${r.change22k || 45}</span>
-      </div>
-      <div class="rate-item">
-        <span class="metal">22K 1 Sovereign (8g):</span>
-        <span class="price"><span class="gold-highlight">₹${(r.gold22k_8g || r.gold22k * 8).toLocaleString('en-IN')}</span></span>
-      </div>
-      <div class="rate-item">
-        <span class="metal">24K Pure Gold (1g):</span>
-        <span class="price"><span class="gold-highlight">₹${r.gold24k.toLocaleString('en-IN')}</span></span>
-        <span class="${trendClass}">${trendSymbol}</span>
-      </div>
-      <div class="rate-item">
-        <span class="metal">18K Gold:</span>
-        <span class="price"><span class="gold-highlight">₹${(r.gold18k || Math.round(r.gold24k * 0.75)).toLocaleString('en-IN')}</span>/g</span>
-      </div>
-      <div class="rate-item">
-        <span class="metal">Pure Silver (1g):</span>
-        <span class="price"><span class="gold-highlight">₹${r.silver.toLocaleString('en-IN')}</span></span>
-      </div>
-      <div class="rate-item">
-        <span class="metal">Silver 1 Kg:</span>
-        <span class="price"><span class="gold-highlight">₹${(r.silver_kg || Math.round(r.silver * 1000)).toLocaleString('en-IN')}</span></span>
-      </div>
-      <div class="rate-item rate-location-tag">
-        <a href="#live-rates" style="color: var(--color-gold-bright); text-decoration: underline;">📊 View Full Live Board</a>
-      </div>
-    `;
+      ratesTickerContainer.innerHTML = `
+        <div class="rate-item">
+          <span class="metal">22K Gold (1g):</span>
+          <span class="price"><span class="gold-highlight">₹${r.gold22k.toLocaleString('en-IN')}</span></span>
+          <span class="${trendClass}">${trendSymbol} ₹${r.change22k || 45}</span>
+        </div>
+        <div class="rate-item">
+          <span class="metal">22K 1 Sovereign (8g):</span>
+          <span class="price"><span class="gold-highlight">₹${(r.gold22k_8g || r.gold22k * 8).toLocaleString('en-IN')}</span></span>
+        </div>
+        <div class="rate-item">
+          <span class="metal">24K Pure Gold (1g):</span>
+          <span class="price"><span class="gold-highlight">₹${r.gold24k.toLocaleString('en-IN')}</span></span>
+          <span class="${trendClass}">${trendSymbol}</span>
+        </div>
+        <div class="rate-item">
+          <span class="metal">18K Gold:</span>
+          <span class="price"><span class="gold-highlight">₹${(r.gold18k || Math.round(r.gold24k * 0.75)).toLocaleString('en-IN')}</span>/g</span>
+        </div>
+        <div class="rate-item">
+          <span class="metal">Pure Silver (1g):</span>
+          <span class="price"><span class="gold-highlight">₹${r.silver.toLocaleString('en-IN')}</span></span>
+        </div>
+        <div class="rate-item">
+          <span class="metal">Silver 1 Kg:</span>
+          <span class="price"><span class="gold-highlight">₹${(r.silver_kg || Math.round(r.silver * 1000)).toLocaleString('en-IN')}</span></span>
+        </div>
+        <div class="rate-item rate-location-tag">
+          <a href="#live-rates" style="color: var(--color-gold-bright); text-decoration: underline;">📊 View Full Live Board</a>
+        </div>
+      `;
+    }
 
     renderBullionBoard();
   }
