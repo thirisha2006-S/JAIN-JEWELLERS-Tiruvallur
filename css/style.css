@@ -99,7 +99,7 @@ button, input, select, textarea {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(14px, 4vw, 28px);
 }
 
 /* ==========================================================================
@@ -2421,34 +2421,112 @@ button, input, select, textarea {
    BRIDAL MUHURTHAM JEWELLERY PACKAGE PLANNER
    ========================================================================== */
 .bridal-planner-section {
-  padding: 85px 0 95px 0;
-  background: #fdf8ee;
-  border-bottom: 1px solid rgba(201, 151, 56, 0.25);
-  position: relative;
+  padding: 70px 0 80px;
+  background: linear-gradient(160deg, #fdf8ee 60%, #fef3e2 100%);
+  border-bottom: 1px solid rgba(201, 151, 56, 0.2);
 }
 
-.bridal-simple { grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
-.bridal-image-wrap { display: flex; justify-content: center; }
-.bridal-hero-img { width: 100%; max-width: 420px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); object-fit: cover; }
-@media (max-width: 768px) {
-  .bridal-simple { grid-template-columns: 1fr; }
-  .bridal-hero-img { max-width: 100%; }
-}
-
-.bridal-items-list {
+/* Two-column: image left, checklist right */
+.bridal-planner-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left image column */
+.bridal-image-col {
+  position: sticky;
+  top: 90px;
+}
+
+.bridal-portrait-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 16px 48px rgba(120, 60, 20, 0.22);
+  display: block;
+}
+
+.bridal-caption-box {
+  padding: 20px 4px 0;
+}
+
+.bridal-caption-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  color: var(--color-primary-dark);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.bridal-caption-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.bridal-trust-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bridal-trust-row span {
+  background: rgba(201, 151, 56, 0.12);
+  border: 1px solid rgba(201, 151, 56, 0.3);
+  color: var(--color-primary-dark);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Right column */
+.bridal-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Checklist header */
+.bridal-checklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  font-size: 0.95rem;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid rgba(201, 151, 56, 0.2);
+}
+
+.bridal-count-badge {
+  background: #166534;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Ornament cards — no images, clean text rows */
+.bridal-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .bridal-item-card {
   background: #fff;
-  border-radius: var(--radius-md);
-  border: 1.5px solid #ded5c5;
-  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e0d5c2;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
   transition: all var(--transition-fast);
   user-select: none;
@@ -2456,50 +2534,49 @@ button, input, select, textarea {
 
 .bridal-item-card:hover {
   border-color: var(--color-gold);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(201, 151, 56, 0.12);
 }
 
 .bridal-item-card.selected {
   border-color: var(--color-gold-bright);
-  background: #fffdf7;
-  box-shadow: 0 4px 16px rgba(201, 151, 56, 0.18);
+  background: #fffdf4;
+  box-shadow: 0 4px 16px rgba(201, 151, 56, 0.2);
 }
 
 .bridal-check-circle {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
   border-radius: 50%;
-  border: 2px solid #b8ab98;
+  border: 2px solid #c8bba8;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 800;
   transition: all var(--transition-fast);
-  font-size: 0.75rem;
+  color: transparent;
 }
 
 .bridal-item-card.selected .bridal-check-circle {
   background: var(--color-gold-gradient);
-  border-color: #aa771c;
-  color: #2b0409;
+  border-color: #a86c00;
+  color: #3b0a0a;
 }
 
+/* Hide individual item images — show only one portrait */
 .bridal-item-thumb {
-  width: 52px;
-  height: 52px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid #ebdcc5;
-  flex-shrink: 0;
+  display: none;
 }
 
 .bridal-item-info {
   flex: 1;
+  min-width: 0;
 }
 
 .bridal-role-tag {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--color-primary-light);
   font-weight: 700;
   text-transform: uppercase;
@@ -2507,86 +2584,111 @@ button, input, select, textarea {
 }
 
 .bridal-item-name {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--color-text-main);
-  line-height: 1.25;
-  margin: 2px 0;
+  margin: 1px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bridal-item-metrics {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--color-text-muted);
 }
 
-/* Sticky Bridal Muhurtham Box */
+/* Price summary card */
 .bridal-summary-sticky-card {
-  position: sticky;
-  top: 100px;
   background: var(--color-maroon-gradient);
   color: #fff;
-  border-radius: var(--radius-lg);
-  padding: 32px 28px;
-  border: 2px solid var(--color-gold-bright);
+  border-radius: 16px;
+  padding: 24px 22px;
+  border: 1.5px solid rgba(231, 190, 96, 0.45);
   box-shadow: var(--shadow-lg);
 }
 
-.bridal-summary-sticky-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  color: var(--color-gold-bright);
-  line-height: 1.2;
+.bridal-summary-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #fce7c8;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .bridal-weight-counter {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: 18px 0;
-  padding: 14px 18px;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(231, 190, 96, 0.3);
+  margin: 10px 0 14px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(231, 190, 96, 0.25);
 }
 
 .bridal-grams-large {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.85rem;
   font-weight: 800;
   color: var(--color-gold-bright);
   line-height: 1;
 }
 
 .bridal-sovereign-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #eedcc8;
+  margin-top: 2px;
 }
 
 .bridal-price-breakdown {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-  font-size: 0.88rem;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 0.86rem;
   color: #e5d8ca;
 }
 
 .bridal-price-breakdown .line {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
   padding-bottom: 6px;
+  gap: 8px;
+}
+
+.bridal-price-breakdown .line strong {
+  white-space: nowrap;
 }
 
 .bridal-price-breakdown .line.total {
   border-bottom: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #fff;
-  padding-top: 6px;
+  padding-top: 4px;
+}
+
+.bridal-action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bridal-btn-sec {
+  justify-content: center;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+  text-align: center;
+}
+
+.bridal-btn-sec:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--color-gold-bright) !important;
 }
 
 /* ==========================================================================
+   VIP LIVE VIDEO SHOPPING SUITE
    VIP LIVE VIDEO SHOPPING SUITE
    ========================================================================== */
 .video-shopping-banner {
@@ -2686,6 +2788,16 @@ button, input, select, textarea {
   .bridal-planner-layout {
     grid-template-columns: 1fr;
   }
+  .bridal-image-col {
+    position: static;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  .bridal-portrait-img {
+    height: 260px;
+  }
   .video-shopping-grid {
     grid-template-columns: 1fr;
   }
@@ -2716,6 +2828,28 @@ button, input, select, textarea {
 }
 
 @media (max-width: 768px) {
+  .bridal-image-col {
+    grid-template-columns: 1fr;
+  }
+  .bridal-portrait-img {
+    height: 220px;
+    border-radius: 12px;
+  }
+  .bridal-caption-box {
+    padding: 14px 0 0;
+  }
+  .bridal-caption-title {
+    font-size: 1.25rem;
+  }
+  .bridal-planner-section {
+    padding: 48px 0 60px;
+  }
+  .bridal-grams-large {
+    font-size: 1.45rem;
+  }
+  .bridal-summary-sticky-card {
+    padding: 18px 16px;
+  }
   .hallmark-steps-grid {
     grid-template-columns: 1fr;
   }
@@ -2767,4 +2901,75 @@ button, input, select, textarea {
   body {
     padding-bottom: 70px; /* Space for sticky bottom bar */
   }
+}
+
+/* ==========================================================================
+   MOBILE SLIDE NAV OVERLAY
+   ========================================================================== */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(300px, 85vw);
+  background: #1a0205;
+  border-left: 2px solid rgba(201,151,56,0.4);
+  z-index: 9999;
+  padding: 60px 28px 40px;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+}
+.mobile-nav-overlay.open {
+  transform: translateX(0);
+}
+.mobile-nav-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none;
+  border: none;
+  color: var(--color-gold-bright);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+}
+.mobile-nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-gold-bright);
+  letter-spacing: 2px;
+  border-bottom: 1px solid rgba(201,151,56,0.3);
+  padding-bottom: 16px;
+}
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-nav-links a {
+  display: block;
+  color: #f7ede2;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 11px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.mobile-nav-links a:hover {
+  background: rgba(201,151,56,0.14);
+  color: var(--color-gold-bright);
+}
+.mobile-nav-contact a {
+  color: var(--color-gold-bright);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
