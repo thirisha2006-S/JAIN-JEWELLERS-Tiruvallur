@@ -2427,12 +2427,12 @@ button, input, select, textarea {
 }
 
 /* Two-column: image left, checklist right */
-.bridal-planner-layout {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 40px;
-  align-items: start;
-}
+.bridal-summary-card { background:#fff; border:1.5px solid #ded5c5; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,.08); }
+.bridal-summary-title { font-family:var(--font-serif); color:var(--color-primary-dark); margin-bottom:14px; }
+.bridal-summary-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee; }
+.bridal-summary-total { font-size:1.1rem; color:var(--color-gold-bright); border-top:2px solid var(--color-gold); border-bottom:none; margin-top:6px; padding-top:12px; }
+.bridal-btn-secondary { background:#3b1f0a; color:#fff !important; border:none; }
+.bridal-btn-primary { background:var(--color-gold-gradient); color:#2b0409 !important; }
 
 /* Left image column */
 .bridal-image-col {
