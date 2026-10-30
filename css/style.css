@@ -341,8 +341,11 @@ button, input, select, textarea {
 
 /* Navigation Links */
 .nav-menu {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -424,9 +427,7 @@ button, input, select, textarea {
 }
 
 .mobile-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
   background: none;
   border: none;
   color: var(--color-gold-bright);
@@ -2597,9 +2598,32 @@ button, input, select, textarea {
     padding: 0 16px;
   }
 
-  /* Header on Mobile */
+  /* Header on Mobile — same layout as laptop, wraps to 2 rows */
+  .header-inner {
+    flex-wrap: wrap;
+    padding: 10px 0;
+    gap: 8px;
+  }
   .header-actions .btn-header-call {
     display: none;
+  }
+  .header-actions .btn-admin-portal span {
+    display: none;
+  }
+  nav {
+    order: 3;
+    width: 100%;
+  }
+  .nav-menu {
+    gap: 10px;
+    justify-content: center;
+    padding: 6px 0;
+    border-top: 1px solid rgba(201,151,56,0.2);
+  }
+  .nav-link {
+    font-size: 0.78rem;
+    padding: 4px 2px;
+    letter-spacing: 0;
   }
 
   /* Hero Section */
