@@ -2999,3 +2999,5 @@ a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2p
 @media (max-width:480px){ .bridal-summary-row{font-size:14px;} }
 
 @media (max-width:768px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
+
+.bridal-planner-section { min-height:400px; background-size:cover !important; background-position:center top !important; }
