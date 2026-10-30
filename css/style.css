@@ -2789,7 +2789,7 @@ button, input, select, textarea {
 /* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 0px) {
   .bridal-planner-layout {
     grid-template-columns: 1fr;
   }
@@ -2832,7 +2832,7 @@ button, input, select, textarea {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 0px) {
   .bridal-image-col {
     grid-template-columns: 1fr;
   }
@@ -2995,14 +2995,14 @@ button, input, select, textarea {
 
 a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600 !important; padding:14px 28px !important; border-radius:999px !important; opacity:1 !important; visibility:visible !important; display:inline-block !important; }
 
-@media (max-width:768px){ body{overflow-x:hidden;} .container{padding:0 12px;} .bridal-planner-layout{grid-template-columns:1fr;} .bridal-summary-card{max-width:100%;} .bridal-action-btns{flex-direction:column;} .bridal-action-btns a{width:100%;} }
-@media (max-width:480px){ .bridal-summary-row{font-size:14px;} }
+@media (max-width: 0px){ body{overflow-x:hidden;} .container{padding:0 12px;} .bridal-planner-layout{grid-template-columns:1fr;} .bridal-summary-card{max-width:100%;} .bridal-action-btns{flex-direction:column;} .bridal-action-btns a{width:100%;} }
+@media (max-width: 0px){ .bridal-summary-row{font-size:14px;} }
 
-@media (max-width:768px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
+@media (max-width: 0px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
 
 .bridal-planner-section { min-height:400px; background-size:cover !important; background-position:center top !important; }
 
-@media (max-width:768px){ .bridal-planner-section { background: url('../assets/images/hero-bridal.jpg') center/cover no-repeat !important; min-height:400px; } }
+@media (max-width: 0px){ .bridal-planner-section { background: url('../assets/images/hero-bridal.jpg') center/cover no-repeat !important; min-height:400px; } }
 
 /* ==========================================================================
    MOBILE SLIDE NAV OVERLAY
