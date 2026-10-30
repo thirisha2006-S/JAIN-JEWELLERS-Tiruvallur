@@ -341,9 +341,7 @@ button, input, select, textarea {
 
 /* Navigation Links */
 .nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  display: none;
   list-style: none;
 }
 
@@ -426,7 +424,9 @@ button, input, select, textarea {
 }
 
 .mobile-toggle-btn {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   color: var(--color-gold-bright);
@@ -2600,14 +2600,6 @@ button, input, select, textarea {
   /* Header on Mobile */
   .header-actions .btn-header-call {
     display: none;
-  }
-  .nav-menu {
-    display: none;
-  }
-  .mobile-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   /* Hero Section */
