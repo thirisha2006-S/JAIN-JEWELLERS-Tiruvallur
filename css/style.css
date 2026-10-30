@@ -341,11 +341,8 @@ button, input, select, textarea {
 
 /* Navigation Links */
 .nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  display: none;
   list-style: none;
-  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -427,7 +424,9 @@ button, input, select, textarea {
 }
 
 .mobile-toggle-btn {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   color: var(--color-gold-bright);
@@ -2724,14 +2723,6 @@ button, input, select, textarea {
 .mobile-drawer-whatsapp {
   background: #25d366;
   color: #fff;
-}
-
-/* Hide mobile drawer on desktop */
-@media (min-width: 769px) {
-  .mobile-nav-drawer,
-  .mobile-nav-overlay {
-    display: none !important;
-  }
 }
 
 /* ================================================================
