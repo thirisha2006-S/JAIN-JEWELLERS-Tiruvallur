@@ -2586,7 +2586,10 @@ button, input, select, textarea {
 
 /* Mobile Phone (max-width: 768px) */
 @media (max-width: 768px) {
-  html, body {
+  html {
+    overflow-x: hidden;
+  }
+  body {
     overflow-x: hidden;
   }
 
@@ -2603,7 +2606,6 @@ button, input, select, textarea {
     flex-wrap: nowrap;
     padding: 10px 0;
     gap: 10px;
-    overflow: hidden;
   }
   .brand-title {
     font-size: 1rem;
@@ -2620,8 +2622,9 @@ button, input, select, textarea {
   }
   nav {
     flex: 1;
+    min-width: 0;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
