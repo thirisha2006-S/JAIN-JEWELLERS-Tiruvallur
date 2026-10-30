@@ -2584,140 +2584,103 @@ button, input, select, textarea {
   }
 }
 
-/* Mobile Phone (max-width: 768px) */
+/* ============================================================
+   MOBILE PHONE  ≤ 768px
+   → Hamburger nav (mobile-friendly)
+   → Page layout stays as close to laptop as possible
+   ============================================================ */
 @media (max-width: 768px) {
-  html {
-    overflow-x: hidden;
-  }
-  body {
+  html, body {
     overflow-x: hidden;
   }
 
   body {
-    padding-bottom: 72px; /* Space for sticky bottom quick bar */
+    padding-bottom: 72px;
   }
 
   .container {
-    padding: 0 16px;
+    padding: 0 14px;
   }
 
-  /* Header on Mobile — identical to laptop, nav scrolls horizontally */
-  .header-inner {
-    flex-wrap: nowrap;
-    padding: 10px 0;
-    gap: 10px;
-  }
-  .brand-title {
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-  }
-  .brand-sub {
+  /* ── Header: hamburger replaces nav ── */
+  .nav-menu {
     display: none;
+  }
+  .mobile-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .header-actions .btn-header-call {
     display: none;
   }
-  .header-actions .btn-admin-portal span {
-    display: none;
-  }
-  nav {
-    flex: 1;
-    min-width: 0;
-    overflow-x: auto;
-    overflow-y: visible;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  nav::-webkit-scrollbar {
-    display: none;
-  }
-  .nav-menu {
-    flex-wrap: nowrap;
-    gap: 14px;
-    padding: 4px 0;
-    white-space: nowrap;
-    width: max-content;
-  }
-  .nav-link {
-    font-size: 0.82rem;
-    white-space: nowrap;
-  }
-
-
-  /* Hero Section */
-  .hero-section {
-    padding: 50px 0 60px;
-    min-height: auto;
-  }
-  .hero-title {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
+  .header-inner {
+    padding: 10px 0;
     gap: 12px;
   }
-  .hero-cta-group a,
-  .hero-cta-group button {
-    width: 100%;
-    justify-content: center;
+  .brand-sub {
+    display: none;
+  }
+  .brand-title {
+    font-size: 1.1rem;
   }
 
-  /* Live Rates Ticker & Cards */
-  .bullion-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  /* ── Hero: same style as laptop, just slightly shorter ── */
+  .hero-section {
+    min-height: 70vh;
+    padding: 60px 0 60px;
   }
-  .bullion-header-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .hero-title {
+    font-size: clamp(1.8rem, 7vw, 3rem);
+    line-height: 1.2;
   }
-  .rate-ticker-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  .hero-description {
+    font-size: 0.9rem;
   }
-  .rate-items-group {
+  .hero-cta-group {
     flex-wrap: wrap;
     gap: 10px;
   }
 
-  /* Bridal Planner on Phone: Only Girl Image, Clean Checklist */
-  .bridal-planner-section {
-    padding: 40px 0 50px;
+  /* ── Live Rates: 2-column like laptop ── */
+  .bullion-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  
-  
+  .bullion-header-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bullion-meta-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── Trust Grid: 2-col like laptop ── */
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* ── Products: 2-col like laptop ── */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .product-card-image-wrap {
+    height: 180px;
+  }
+
+  /* ── Bridal Planner: clean ── */
   .bridal-portrait-img {
     width: 100%;
-    max-height: 280px;
-    height: 280px;
+    height: 300px;
     object-fit: cover;
     border-radius: 14px;
   }
-  .bridal-right-col img,
-  .bridal-item-card img,
   .bridal-item-thumb {
     display: none !important;
-  }
-  .bridal-item-card {
-    padding: 12px 14px;
-    border-radius: 10px;
-  }
-  .bridal-item-name {
-    font-size: 0.88rem;
-  }
-  .bridal-item-metrics {
-    font-size: 0.75rem;
-  }
-  .bridal-summary-sticky-card {
-    padding: 20px 16px;
-    border-radius: 14px;
-  }
-  .bridal-grams-large {
-    font-size: 1.6rem;
   }
   .bridal-action-btns {
     flex-direction: column;
@@ -2730,71 +2693,51 @@ button, input, select, textarea {
     text-align: center;
   }
 
-  /* Product Grid on Phone */
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
+  /* ── Showroom / Scheme / Footer: single col on mobile ── */
+  .showroom-grid,
+  .scheme-grid,
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .product-card-body {
-    padding: 12px;
+  .hallmark-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .product-title {
-    font-size: 0.95rem;
-  }
-  .product-price-current {
-    font-size: 1.05rem;
-  }
-  .product-card-image-wrap {
-    height: 170px;
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 
-  /* Quick View Modal */
+  /* ── Quick View Modal ── */
   .quick-view-grid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
-  .quick-view-image-wrap img {
-    max-height: 220px;
-  }
   .quick-view-card {
-    padding: 20px 16px;
-    width: 95%;
+    width: 96%;
     max-height: 90vh;
+    padding: 20px 16px;
   }
 
-  /* Hallmark & Trust */
-  .hallmark-steps-grid {
-    grid-template-columns: 1fr;
-  }
-  .trust-grid {
-    grid-template-columns: 1fr;
-  }
-  .showroom-img {
-    height: 240px;
-  }
-
-  /* Footer */
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  /* Mobile Sticky Bottom Bar */
+  /* ── Mobile Sticky Bottom Bar ── */
   .mobile-bottom-bar {
     display: flex !important;
   }
 }
 
-/* Small phones (max-width: 480px) */
+/* ── Very small phones ≤ 480px ── */
 @media (max-width: 480px) {
   .container {
     padding: 0 12px;
   }
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
   }
-  .section-title {
-    font-size: 1.55rem;
+  .bullion-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .trust-grid {
+    grid-template-columns: 1fr;
   }
   .products-grid {
     grid-template-columns: 1fr;
@@ -2802,9 +2745,15 @@ button, input, select, textarea {
   .product-card-image-wrap {
     height: 220px;
   }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .hallmark-steps-grid {
+    grid-template-columns: 1fr;
+  }
   .bridal-portrait-img {
     height: 240px;
   }
 }
 
-/* v5.3 cache-bust */
+/* v5.5 */
