@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=5.6">
+  <link rel="stylesheet" href="css/style.css?v=6.0">
 </head>
 <body>
 
@@ -85,6 +85,51 @@
       </div>
     </div>
   </header>
+
+  <!-- =========================================================
+       LALITHAA-STYLE MOBILE SLIDE-IN NAV DRAWER
+       ========================================================= -->
+  <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
+  <aside id="mobileNavDrawer" class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-brand">
+        <div class="brand-emblem" style="width:36px;height:36px;font-size:1.1rem;">JJ</div>
+        <div>
+          <div class="brand-title" style="font-size:1rem;">Jain Jewellers</div>
+          <div style="font-size:0.65rem;color:#af8742;letter-spacing:1px;">TIRUVALLUR</div>
+        </div>
+      </div>
+      <button id="mobileMenuClose" class="mobile-drawer-close" aria-label="Close menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-drawer-nav">
+      <ul>
+        <li><a href="#home" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a></li>
+        <li><a href="#live-rates" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3.5 18.5l6-6 4 4L22 6.92"/></svg>Live Gold & Silver Rates</a></li>
+        <li><a href="#bridal-planner" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Bridal Muhurtham Planner</a></li>
+        <li><a href="#collections" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Jewellery Collections</a></li>
+        <li><a href="#scheme" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>Swarna Dhana Gold Scheme</a></li>
+        <li><a href="#showroom" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 4h16v12H4zm2 2v8h12v-8z"/></svg>Showroom & Hallmark</a></li>
+        <li><a href="#reviews" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Google Reviews (4.8★)</a></li>
+        <li><a href="#contact" onclick="window.switchView('store')"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>Visit & Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="mobile-drawer-footer">
+      <a href="tel:+918825559001" class="mobile-drawer-call">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call: +91 88255 59001
+      </a>
+      <a href="https://wa.me/918825559001" target="_blank" class="mobile-drawer-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </aside>
 
   <!-- ==========================================================================
        CUSTOMER STOREFRONT VIEW CONTAINER

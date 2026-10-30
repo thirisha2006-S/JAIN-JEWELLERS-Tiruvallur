@@ -838,3 +838,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+// ── Mobile Drawer (Lalithaa Style) ──────────────────────────────
+(function() {
+  var toggle  = document.getElementById('mobileMenuToggle');
+  var close   = document.getElementById('mobileMenuClose');
+  var drawer  = document.getElementById('mobileNavDrawer');
+  var overlay = document.getElementById('mobileNavOverlay');
+
+  function openDrawer() {
+    drawer && drawer.classList.add('open');
+    overlay && overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeDrawer() {
+    drawer && drawer.classList.remove('open');
+    overlay && overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  if (toggle)  toggle.addEventListener('click', openDrawer);
+  if (close)   close.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+
+  // Close on any nav link click
+  if (drawer) {
+    drawer.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        setTimeout(closeDrawer, 150);
+      });
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+})();

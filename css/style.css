@@ -2584,176 +2584,233 @@ button, input, select, textarea {
   }
 }
 
-/* ============================================================
-   MOBILE PHONE  ≤ 768px
-   → Hamburger nav (mobile-friendly)
-   → Page layout stays as close to laptop as possible
-   ============================================================ */
+
+/* ================================================================
+   LALITHAA-STYLE MOBILE NAV DRAWER
+   ================================================================ */
+
+/* Overlay backdrop */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1100;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mobile-nav-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Drawer panel */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(300px, 85vw);
+  height: 100vh;
+  background: #12090a;
+  border-right: 1px solid rgba(201,151,56,0.3);
+  z-index: 1200;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.mobile-nav-drawer.open {
+  transform: translateX(0);
+}
+
+/* Drawer header */
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(201,151,56,0.2);
+  background: #1a0c0d;
+}
+.mobile-drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-drawer-close {
+  background: rgba(201,151,56,0.1);
+  border: 1px solid rgba(201,151,56,0.3);
+  border-radius: 8px;
+  color: var(--color-gold-bright);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mobile-drawer-close:hover {
+  background: rgba(201,151,56,0.25);
+}
+
+/* Drawer nav links */
+.mobile-drawer-nav {
+  flex: 1;
+  padding: 12px 0;
+}
+.mobile-drawer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mobile-drawer-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  color: #f2e9dc;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+.mobile-drawer-nav li a svg {
+  color: #af8742;
+  flex-shrink: 0;
+}
+.mobile-drawer-nav li a:hover,
+.mobile-drawer-nav li a:active {
+  background: rgba(201,151,56,0.1);
+  border-left-color: var(--color-gold-bright);
+  color: var(--color-gold-bright);
+}
+.mobile-drawer-nav li + li {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Drawer footer CTA buttons */
+.mobile-drawer-footer {
+  padding: 16px 18px;
+  border-top: 1px solid rgba(201,151,56,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mobile-drawer-call,
+.mobile-drawer-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.mobile-drawer-call {
+  background: rgba(201,151,56,0.15);
+  border: 1px solid rgba(201,151,56,0.4);
+  color: var(--color-gold-bright);
+}
+.mobile-drawer-whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+/* ================================================================
+   MOBILE ≤ 768px — LALITHAA STYLE
+   ================================================================ */
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
   }
-
   body {
-    padding-bottom: 72px;
+    padding-bottom: 70px;
   }
-
   .container {
     padding: 0 14px;
   }
 
-  /* ── Header: hamburger replaces nav ── */
-  .nav-menu {
-    display: none;
-  }
+  /* ── Header ── */
+  .nav-menu { display: none; }
   .mobile-toggle-btn {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .header-actions .btn-header-call {
-    display: none;
-  }
-  .header-inner {
-    padding: 10px 0;
-    gap: 12px;
-  }
-  .brand-sub {
-    display: none;
-  }
-  .brand-title {
-    font-size: 1.1rem;
-  }
+  .header-actions .btn-header-call { display: none; }
+  .header-inner { padding: 10px 0; gap: 12px; }
+  .brand-sub { display: none; }
+  .brand-title { font-size: 1.1rem; }
 
-  /* ── Hero: same style as laptop, just slightly shorter ── */
-  .hero-section {
-    min-height: 70vh;
-    padding: 60px 0 60px;
-  }
-  .hero-title {
-    font-size: clamp(1.8rem, 7vw, 3rem);
-    line-height: 1.2;
-  }
-  .hero-description {
-    font-size: 0.9rem;
-  }
-  .hero-cta-group {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  /* ── Hero ── */
+  .hero-section { min-height: 75vh; padding: 56px 0 56px; }
+  .hero-title { font-size: clamp(1.9rem, 8vw, 3.2rem); line-height: 1.15; }
+  .hero-tagline-motto { font-size: 0.95rem; }
+  .hero-description { font-size: 0.88rem; line-height: 1.6; }
+  .hero-cta-group { flex-wrap: wrap; gap: 10px; }
+  .hero-cta-group a,
+  .hero-cta-group button { flex: 1; min-width: 140px; justify-content: center; }
+  .hero-trust-row { flex-wrap: wrap; gap: 10px; }
 
-  /* ── Live Rates: 2-column like laptop ── */
-  .bullion-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .bullion-header-row {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .bullion-meta-controls {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  /* ── Section headings ── */
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
 
-  /* ── Trust Grid: 2-col like laptop ── */
-  .trust-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
+  /* ── Live Rates: 2-col ── */
+  .bullion-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .bullion-header-row { flex-direction: column; gap: 12px; }
+  .bullion-meta-controls { flex-wrap: wrap; gap: 8px; }
+  .bullion-calc-container { grid-template-columns: 1fr; }
 
-  /* ── Products: 2-col like laptop ── */
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .product-card-image-wrap {
-    height: 180px;
-  }
+  /* ── Trust: 2-col ── */
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
-  /* ── Bridal Planner: clean ── */
-  .bridal-portrait-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 14px;
-  }
-  .bridal-item-thumb {
-    display: none !important;
-  }
-  .bridal-action-btns {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-  .bridal-action-btns a {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
+  /* ── Products: 2-col ── */
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .product-card-image-wrap { height: 175px; }
+  .product-card-body { padding: 12px; }
+  .product-title { font-size: 0.9rem; }
+  .product-price-current { font-size: 1rem; }
 
-  /* ── Showroom / Scheme / Footer: single col on mobile ── */
-  .showroom-grid,
-  .scheme-grid,
-  .location-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .hallmark-steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+  /* ── Bridal ── */
+  .bridal-portrait-img { width: 100%; height: 300px; object-fit: cover; border-radius: 14px; }
+  .bridal-item-thumb { display: none !important; }
+  .bridal-action-btns { flex-direction: column; gap: 10px; width: 100%; }
+  .bridal-action-btns a { width: 100%; justify-content: center; text-align: center; }
 
-  /* ── Quick View Modal ── */
-  .quick-view-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .quick-view-card {
-    width: 96%;
-    max-height: 90vh;
-    padding: 20px 16px;
-  }
+  /* ── Showroom / Scheme ── */
+  .showroom-grid, .scheme-grid, .location-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hallmark-steps-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Footer ── */
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  /* ── Quick View ── */
+  .quick-view-grid { grid-template-columns: 1fr; gap: 18px; }
+  .quick-view-card { width: 96%; max-height: 90vh; padding: 20px 16px; }
 
   /* ── Mobile Sticky Bottom Bar ── */
-  .mobile-bottom-bar {
-    display: flex !important;
-  }
+  .mobile-bottom-bar { display: flex !important; }
 }
 
 /* ── Very small phones ≤ 480px ── */
 @media (max-width: 480px) {
-  .container {
-    padding: 0 12px;
-  }
-  .hero-title {
-    font-size: 1.7rem;
-  }
-  .bullion-cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .trust-grid {
-    grid-template-columns: 1fr;
-  }
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-  .product-card-image-wrap {
-    height: 220px;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  .hallmark-steps-grid {
-    grid-template-columns: 1fr;
-  }
-  .bridal-portrait-img {
-    height: 240px;
-  }
+  .container { padding: 0 12px; }
+  .hero-title { font-size: 1.75rem; }
+  .bullion-cards-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card-image-wrap { height: 220px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hallmark-steps-grid { grid-template-columns: 1fr; }
+  .bridal-portrait-img { height: 240px; }
 }
 
-/* v5.5 */
+/* v6.0 */
