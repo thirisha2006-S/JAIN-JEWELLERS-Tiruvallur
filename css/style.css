@@ -2598,11 +2598,19 @@ button, input, select, textarea {
     padding: 0 16px;
   }
 
-  /* Header on Mobile — same layout as laptop, wraps to 2 rows */
+  /* Header on Mobile — identical to laptop, nav scrolls horizontally */
   .header-inner {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 10px 0;
-    gap: 8px;
+    gap: 10px;
+    overflow: hidden;
+  }
+  .brand-title {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+  .brand-sub {
+    display: none;
   }
   .header-actions .btn-header-call {
     display: none;
@@ -2611,20 +2619,27 @@ button, input, select, textarea {
     display: none;
   }
   nav {
-    order: 3;
-    width: 100%;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar {
+    display: none;
   }
   .nav-menu {
-    gap: 10px;
-    justify-content: center;
-    padding: 6px 0;
-    border-top: 1px solid rgba(201,151,56,0.2);
+    flex-wrap: nowrap;
+    gap: 14px;
+    padding: 4px 0;
+    white-space: nowrap;
+    width: max-content;
   }
   .nav-link {
-    font-size: 0.78rem;
-    padding: 4px 2px;
-    letter-spacing: 0;
+    font-size: 0.82rem;
+    white-space: nowrap;
   }
+
 
   /* Hero Section */
   .hero-section {
