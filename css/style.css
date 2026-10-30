@@ -2998,3 +2998,5 @@ a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2p
 
 @media (max-width:768px){ body{overflow-x:hidden;} .container{padding:0 12px;} .bridal-planner-layout{grid-template-columns:1fr;} .bridal-summary-card{max-width:100%;} .bridal-action-btns{flex-direction:column;} .bridal-action-btns a{width:100%;} }
 @media (max-width:480px){ .bridal-summary-row{font-size:14px;} }
+
+@media (max-width:768px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
