@@ -72,12 +72,31 @@
         </div>
       </a>
 
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active" onclick="window.switchView('store')">Home</a></li>
+          <li><a href="#live-rates" class="nav-link" onclick="window.switchView('store')">Live Rates</a></li>
+          <li><a href="#bridal-planner" class="nav-link" onclick="window.switchView('store')">Bridal Planner</a></li>
+          <li><a href="#collections" class="nav-link" onclick="window.switchView('store')">Collections</a></li>
+          <li><a href="#scheme" class="nav-link" onclick="window.switchView('store')">Gold Scheme</a></li>
+          <li><a href="#showroom" class="nav-link" onclick="window.switchView('store')">Showroom</a></li>
+          <li><a href="#reviews" class="nav-link" onclick="window.switchView('store')">Reviews</a></li>
+          <li><a href="#contact" class="nav-link" onclick="window.switchView('store')">Contact</a></li>
+        </ul>
+      </nav>
+
       <!-- Header CTAs -->
       <div class="header-actions">
+        <a href="tel:+918825559001" class="btn-header-call" title="Call Jain Jewellers">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>+91 88255 59001</span>
+        </a>
         <button id="navAdminBtn" class="btn-admin-portal" title="Open Admin Dashboard">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
           <span>Admin</span>
         </button>
+        <button id="mobileMenuToggle" class="mobile-toggle-btn" aria-label="Open menu" title="Menu">&#9776;</button>
       </div>
     </div>
   </header>
