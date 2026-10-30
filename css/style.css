@@ -2422,7 +2422,7 @@ button, input, select, textarea {
    ========================================================================== */
 .bridal-planner-section {
   padding: 70px 0 80px;
-  background: url('../assets/images/hero-bridal.jpg') center/cover no-repeat;
+  background: linear-gradient(160deg, #fdf8ee 60%, #fef3e2 100%);
   border-bottom: 1px solid rgba(201, 151, 56, 0.2);
 }
 
@@ -3001,3 +3001,5 @@ a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2p
 @media (max-width:768px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
 
 .bridal-planner-section { min-height:400px; background-size:cover !important; background-position:center top !important; }
+
+@media (max-width:768px){ .bridal-planner-section { background: url('../assets/images/hero-bridal.jpg') center/cover no-repeat !important; min-height:400px; } }
