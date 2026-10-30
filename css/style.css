@@ -3076,4 +3076,4 @@ a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2p
 }
 
 /* Force mobile layout on all screens */
-body { max-width: 480px; margin: 0 auto; }
+html, body { max-width: 480px !important; margin: 0 auto !important; width: 100% !important; }
