@@ -341,8 +341,11 @@ button, input, select, textarea {
 
 /* Navigation Links */
 .nav-menu {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -424,9 +427,7 @@ button, input, select, textarea {
 }
 
 .mobile-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
   background: none;
   border: none;
   color: var(--color-gold-bright);
@@ -2814,4 +2815,10 @@ button, input, select, textarea {
   .bridal-portrait-img { height: 240px; }
 }
 
-/* v6.0 */
+/* Hide drawer/overlay globally - laptop layout on all screens */
+.mobile-nav-overlay,
+.mobile-nav-drawer {
+  display: none !important;
+}
+
+/* v6.3 */
