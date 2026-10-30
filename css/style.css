@@ -2616,13 +2616,15 @@ button, input, select, textarea {
   border-right: 1px solid rgba(201,151,56,0.3);
   z-index: 1200;
   transform: translateX(-100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
 .mobile-nav-drawer.open {
   transform: translateX(0);
+  visibility: visible;
 }
 
 /* Drawer header */
@@ -2722,6 +2724,14 @@ button, input, select, textarea {
 .mobile-drawer-whatsapp {
   background: #25d366;
   color: #fff;
+}
+
+/* Hide mobile drawer on desktop */
+@media (min-width: 769px) {
+  .mobile-nav-drawer,
+  .mobile-nav-overlay {
+    display: none !important;
+  }
 }
 
 /* ================================================================
