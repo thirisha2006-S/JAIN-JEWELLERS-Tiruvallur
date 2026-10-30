@@ -101,6 +101,27 @@
     </div>
   </header>
 
+  <!-- Mobile Slide Navigation Drawer -->
+  <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true">
+    <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+    <div class="mobile-nav-brand">JAIN JEWELLERS</div>
+    <nav>
+      <ul class="mobile-nav-links">
+        <li><a href="#home" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Home</a></li>
+        <li><a href="#live-rates" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Live Gold & Silver Rates</a></li>
+        <li><a href="#bridal-planner" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Bridal Muhurtham Planner</a></li>
+        <li><a href="#collections" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Jewellery Collections</a></li>
+        <li><a href="#scheme" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Swarna Dhana Gold Scheme</a></li>
+        <li><a href="#showroom" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Showroom & Hallmark</a></li>
+        <li><a href="#reviews" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Google Reviews (4.8★)</a></li>
+        <li><a href="#contact" onclick="window.switchView('store'); document.getElementById('mobileNavOverlay').classList.remove('open');">Visit & Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-nav-contact">
+      <a href="tel:+918825559001">📞 Call: +91 88255 59001</a>
+    </div>
+  </div>
+
   <!-- ==========================================================================
        CUSTOMER STOREFRONT VIEW CONTAINER
        ========================================================================== -->

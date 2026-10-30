@@ -635,7 +635,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bridal-check-circle">
           ${item.selected ? '✓' : ''}
         </div>
-        <img src="${item.image}" alt="${item.name}" class="bridal-item-thumb">
         <div class="bridal-item-info">
           <span class="bridal-role-tag">${item.role}</span>
           <div class="bridal-item-name">${item.name}</div>

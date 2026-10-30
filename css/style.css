@@ -1083,6 +1083,12 @@ button, input, select, textarea {
   color: #2b0409;
 }
 
+/* Hide scheme section images if any */
+.scheme-calculator-section img,
+#scheme img {
+  display: none !important;
+}
+
 /* Product Card Details */
 .product-card-body {
   padding: 20px;
@@ -2440,13 +2446,14 @@ button, input, select, textarea {
   top: 90px;
 }
 
+.bridal-image-col img,
 .bridal-portrait-img {
   width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 16px 48px rgba(120, 60, 20, 0.22);
+  height: auto;
   display: block;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 12px 40px rgba(139, 92, 8, 0.25);
 }
 
 .bridal-caption-box {
@@ -2566,8 +2573,10 @@ button, input, select, textarea {
 }
 
 /* Hide individual item images — show only one portrait */
-.bridal-item-thumb {
-  display: none;
+.bridal-item-card img,
+.bridal-item-thumb,
+.bridal-right-col img:not(.bridal-portrait-img) {
+  display: none !important;
 }
 
 .bridal-item-info {
@@ -2787,21 +2796,22 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN BREAKPOINTS
+   RESPONSIVE DESIGN BREAKPOINTS (PHONE + LAPTOP OPTIMIZED)
    ========================================================================== */
-@media (max-width: 0px) {
+
+/* Laptop & Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
   .bridal-planner-layout {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
   .bridal-image-col {
     position: static;
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 20px;
-    align-items: center;
+    max-width: 440px;
+    margin: 0 auto;
   }
   .bridal-portrait-img {
-    height: 260px;
+    height: 340px;
   }
   .video-shopping-grid {
     grid-template-columns: 1fr;
@@ -2822,7 +2832,7 @@ button, input, select, textarea {
   .scheme-grid,
   .location-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2832,38 +2842,62 @@ button, input, select, textarea {
   }
 }
 
-@media (max-width: 0px) {
-  .bridal-image-col {
-    grid-template-columns: 1fr;
+/* Mobile Phone (max-width: 768px) */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
   }
-  .bridal-portrait-img {
-    height: 220px;
-    border-radius: 12px;
+
+  body {
+    padding-bottom: 72px; /* Space for sticky bottom quick bar */
   }
-  .bridal-caption-box {
-    padding: 14px 0 0;
+
+  .container {
+    padding: 0 16px;
   }
-  .bridal-caption-title {
-    font-size: 1.25rem;
+
+  /* Header on Mobile */
+  .header-actions .btn-header-call {
+    display: none;
   }
-  .bridal-planner-section {
-    padding: 48px 0 60px;
+  .nav-menu {
+    display: none;
   }
-  .bridal-grams-large {
-    font-size: 1.45rem;
+  .mobile-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .bridal-summary-sticky-card {
-    padding: 18px 16px;
+
+  /* Hero Section */
+  .hero-section {
+    padding: 50px 0 60px;
+    min-height: auto;
   }
-  .hallmark-steps-grid {
-    grid-template-columns: 1fr;
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
   }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-cta-group a,
+  .hero-cta-group button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Live Rates Ticker & Cards */
   .bullion-cards-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
   .bullion-header-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
   .rate-ticker-container {
     flex-direction: column;
@@ -2871,40 +2905,138 @@ button, input, select, textarea {
     gap: 6px;
   }
   .rate-items-group {
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .nav-menu {
-    display: none; /* Can be toggled or accessed via mobile bottom bar */
+
+  /* Bridal Planner on Phone: Only Girl Image, Clean Checklist */
+  .bridal-planner-section {
+    padding: 40px 0 50px;
   }
-  .mobile-toggle-btn {
-    display: block;
+  .bridal-planner-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .header-actions .btn-header-call {
-    display: none;
+  .bridal-image-col {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  .bridal-portrait-img {
+    width: 100%;
+    max-height: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+  .bridal-right-col img,
+  .bridal-item-card img,
+  .bridal-item-thumb {
+    display: none !important;
+  }
+  .bridal-item-card {
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+  .bridal-item-name {
+    font-size: 0.88rem;
+  }
+  .bridal-item-metrics {
+    font-size: 0.75rem;
+  }
+  .bridal-summary-sticky-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+  .bridal-grams-large {
+    font-size: 1.6rem;
+  }
+  .bridal-action-btns {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .bridal-action-btns a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Product Grid on Phone */
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .product-card-body {
+    padding: 12px;
+  }
+  .product-title {
+    font-size: 0.95rem;
+  }
+  .product-price-current {
+    font-size: 1.05rem;
+  }
+  .product-card-image-wrap {
+    height: 170px;
+  }
+
+  /* Quick View Modal */
+  .quick-view-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .quick-view-image-wrap img {
+    max-height: 220px;
+  }
+  .quick-view-card {
+    padding: 20px 16px;
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  /* Hallmark & Trust */
+  .hallmark-steps-grid {
+    grid-template-columns: 1fr;
   }
   .trust-grid {
     grid-template-columns: 1fr;
   }
   .showroom-img {
-    height: 300px;
+    height: 240px;
   }
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-  .quick-view-grid {
-    grid-template-columns: 1fr;
-  }
-  .quick-view-image-wrap img {
-    max-height: 250px;
-  }
+
+  /* Footer */
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
+
+  /* Mobile Sticky Bottom Bar */
   .mobile-bottom-bar {
-    display: block;
+    display: flex !important;
   }
-  body {
-    padding-bottom: 70px; /* Space for sticky bottom bar */
+}
+
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  .section-title {
+    font-size: 1.55rem;
+  }
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .product-card-image-wrap {
+    height: 220px;
+  }
+  .bridal-portrait-img {
+    height: 240px;
   }
 }
 
@@ -2913,25 +3045,28 @@ button, input, select, textarea {
    ========================================================================== */
 .mobile-nav-overlay {
   position: fixed;
-  top: 0; right: 0; bottom: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   width: min(300px, 85vw);
   background: #1a0205;
-  border-left: 2px solid rgba(201,151,56,0.4);
+  border-left: 2px solid rgba(201, 151, 56, 0.4);
   z-index: 9999;
-  padding: 60px 28px 40px;
+  padding: 60px 24px 40px;
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   gap: 24px;
-  box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
 }
 .mobile-nav-overlay.open {
   transform: translateX(0);
 }
 .mobile-nav-close {
   position: absolute;
-  top: 16px; right: 18px;
+  top: 16px;
+  right: 18px;
   background: none;
   border: none;
   color: var(--color-gold-bright);
@@ -2942,31 +3077,32 @@ button, input, select, textarea {
 }
 .mobile-nav-brand {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--color-gold-bright);
   letter-spacing: 2px;
-  border-bottom: 1px solid rgba(201,151,56,0.3);
+  border-bottom: 1px solid rgba(201, 151, 56, 0.3);
   padding-bottom: 16px;
 }
 .mobile-nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 .mobile-nav-links a {
   display: block;
   color: #f7ede2;
   font-size: 1.05rem;
   font-weight: 600;
-  padding: 11px 12px;
+  padding: 11px 14px;
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.2s;
 }
-.mobile-nav-links a:hover {
-  background: rgba(201,151,56,0.14);
+.mobile-nav-links a:hover,
+.mobile-nav-links a:active {
+  background: rgba(201, 151, 56, 0.16);
   color: var(--color-gold-bright);
 }
 .mobile-nav-contact a {
@@ -2976,101 +3112,9 @@ button, input, select, textarea {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-/* Bridal estimate card */
-.bridal-summary-card { background:#fff; border:1px solid #c9a24b; border-radius:12px; padding:20px; max-width:900px; margin:0 auto; }
-.bridal-summary-card .bridal-grams-large, .bridal-summary-card .bridal-sovereign-text { color:#555; font-size:15px; }
-.bridal-summary-row { display:flex; justify-content:space-between; font-size:16px; color:#3a0a14; padding:8px 0; }
-.bridal-summary-total { border-top:1px solid #c9a24b; margin-top:8px; padding-top:12px; font-size:22px; font-weight:700; color:#7a0f24; }
-.bridal-btn-secondary { background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600; padding:14px 28px; border-radius:999px; }
-.bridal-btn-secondary:hover { background:#7a0f24 !important; color:#fff !important; }
-.bridal-action-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; max-width:900px; margin:20px auto; }
-.bridal-action-btns a { flex:1; min-width:220px; }
-
-.bridal-trust-row { display:flex; gap:12px; flex-wrap:nowrap; justify-content:center; white-space:nowrap; }
-
-.bridal-btn-secondary, a.bridal-btn-secondary { display:inline-block !important; background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600 !important; padding:14px 28px !important; border-radius:999px !important; opacity:1 !important; visibility:visible !important; }
-
-a.bridal-btn-sec, .bridal-btn-sec { background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600 !important; padding:14px 28px !important; border-radius:999px !important; opacity:1 !important; visibility:visible !important; display:inline-block !important; }
-
-@media (max-width: 0px){ body{overflow-x:hidden;} .container{padding:0 12px;} .bridal-planner-layout{grid-template-columns:1fr;} .bridal-summary-card{max-width:100%;} .bridal-action-btns{flex-direction:column;} .bridal-action-btns a{width:100%;} }
-@media (max-width: 0px){ .bridal-summary-row{font-size:14px;} }
-
-@media (max-width: 0px){ .bridal-portrait-img{display:block !important;width:100% !important;height:auto !important;} .bridal-image-col{display:block !important;} }
-
-.bridal-planner-section { min-height:400px; background-size:cover !important; background-position:center top !important; }
-
-@media (max-width: 0px){ .bridal-planner-section { background: url('../assets/images/hero-bridal.jpg') center/cover no-repeat !important; min-height:400px; } }
-
-/* ==========================================================================
-   MOBILE SLIDE NAV OVERLAY
-   ========================================================================== */
-.mobile-nav-overlay {
-  position: fixed;
-  top: 0; right: 0; bottom: 0;
-  width: min(300px, 85vw);
-  background: #1a0205;
-  border-left: 2px solid rgba(201,151,56,0.4);
-  z-index: 9999;
-  padding: 60px 28px 40px;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  box-shadow: -8px 0 40px rgba(0,0,0,0.5);
-}
-.mobile-nav-overlay.open {
-  transform: translateX(0);
-}
-.mobile-nav-close {
-  position: absolute;
-  top: 16px; right: 18px;
-  background: none;
-  border: none;
-  color: var(--color-gold-bright);
-  font-size: 2rem;
-  cursor: pointer;
-  line-height: 1;
-  padding: 4px 8px;
-}
-.mobile-nav-brand {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--color-gold-bright);
-  letter-spacing: 2px;
-  border-bottom: 1px solid rgba(201,151,56,0.3);
-  padding-bottom: 16px;
-}
-.mobile-nav-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.mobile-nav-links a {
-  display: block;
-  color: #f7ede2;
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 11px 12px;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(201, 151, 56, 0.1);
   border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.mobile-nav-links a:hover {
-  background: rgba(201,151,56,0.14);
-  color: var(--color-gold-bright);
-}
-.mobile-nav-contact a {
-  color: var(--color-gold-bright);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  border: 1px solid rgba(201, 151, 56, 0.25);
 }
