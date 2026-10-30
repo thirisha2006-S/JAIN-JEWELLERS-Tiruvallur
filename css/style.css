@@ -2978,3 +2978,13 @@ button, input, select, textarea {
   align-items: center;
   gap: 6px;
 }
+
+/* Bridal estimate card */
+.bridal-summary-card { background:#fff; border:1px solid #c9a24b; border-radius:12px; padding:20px; max-width:900px; margin:0 auto; }
+.bridal-summary-card .bridal-grams-large, .bridal-summary-card .bridal-sovereign-text { color:#555; font-size:15px; }
+.bridal-summary-row { display:flex; justify-content:space-between; font-size:16px; color:#3a0a14; padding:8px 0; }
+.bridal-summary-total { border-top:1px solid #c9a24b; margin-top:8px; padding-top:12px; font-size:22px; font-weight:700; color:#7a0f24; }
+.bridal-btn-secondary { background:transparent !important; border:2px solid #7a0f24 !important; color:#7a0f24 !important; font-weight:600; padding:14px 28px; border-radius:999px; }
+.bridal-btn-secondary:hover { background:#7a0f24 !important; color:#fff !important; }
+.bridal-action-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; max-width:900px; margin:20px auto; }
+.bridal-action-btns a { flex:1; min-width:220px; }
